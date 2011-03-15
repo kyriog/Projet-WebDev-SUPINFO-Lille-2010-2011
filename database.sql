@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Lun 14 Mars 2011 à 23:01
+-- Généré le : Mar 15 Mars 2011 à 15:00
 -- Version du serveur: 5.5.8
 -- Version de PHP: 5.3.5
 
@@ -28,6 +28,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 CREATE TABLE IF NOT EXISTS `articles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `barcode` varchar(14) NOT NULL,
+  `family` int(10) unsigned NOT NULL,
   `quantity` int(10) unsigned NOT NULL,
   `description` text NOT NULL,
   `state` enum('OK','NOK','TR') NOT NULL,
@@ -39,7 +40,8 @@ CREATE TABLE IF NOT EXISTS `articles` (
   `field5` varchar(255) NOT NULL,
   `field6` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `place` (`place`)
+  KEY `place` (`place`),
+  KEY `family` (`family`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=100000 ;
 
 -- --------------------------------------------------------
@@ -87,14 +89,14 @@ CREATE TABLE IF NOT EXISTS `families` (
 --
 
 CREATE TABLE IF NOT EXISTS `loans` (
-  `id` int(10) unsigned NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `customer` int(10) unsigned NOT NULL,
   `begindate` date NOT NULL,
   `enddate` date NOT NULL,
   `reason` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `customer` (`customer`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=500000 ;
 
 -- --------------------------------------------------------
 
@@ -158,7 +160,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Contraintes pour la table `articles`
 --
 ALTER TABLE `articles`
-  ADD CONSTRAINT `articles_ibfk_1` FOREIGN KEY (`place`) REFERENCES `places` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `articles_ibfk_1` FOREIGN KEY (`place`) REFERENCES `places` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `articles_ibfk_2` FOREIGN KEY (`family`) REFERENCES `families` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `customers`
@@ -182,5 +185,5 @@ ALTER TABLE `loans`
 -- Contraintes pour la table `loans_articles`
 --
 ALTER TABLE `loans_articles`
-  ADD CONSTRAINT `loans_articles_ibfk_2` FOREIGN KEY (`article`) REFERENCES `articles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `loans_articles_ibfk_1` FOREIGN KEY (`loan`) REFERENCES `loans` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `loans_articles_ibfk_1` FOREIGN KEY (`loan`) REFERENCES `loans` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `loans_articles_ibfk_2` FOREIGN KEY (`article`) REFERENCES `articles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
