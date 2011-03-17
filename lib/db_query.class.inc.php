@@ -68,6 +68,18 @@ class db_query {
                             $this->_sql .= ' LIMIT '.$this->_limit;
                     $this->_sql .= ';';
                     break;
+                case 'update':
+                    $this->_sql = 'UPDATE '.$this->_table;
+                    $set = array();
+                    for($i=0;$i<count($this->_fields);$i++) {
+                        $set[$i] = '`'.$this->_fields[$i].'` = "'.$this->_values[$i].'"';
+                    }
+                    $this->_sql .= ' SET '.implode(',',$set);
+                    if(!is_null($this->_where))
+                            $this->_sql .= ' WHERE '.$this->_where;
+                    if(!is_null($this->_limit))
+                            $this->_sql .= ' LIMIT '.$this->_limit;
+                    $this->_sql .= ';';
             }
         }
         return $this;
@@ -191,6 +203,28 @@ class db_query {
         if(is_null($this->_type)) {
             $this->_type = 'delete';
             $this->_table = $table;
+        }
+        return $this;
+    }
+
+    public function update($table) {
+        if(is_null($this->_type)) {
+            $this->_type = 'update';
+            $this->_table = $table;
+        }
+        return $this;
+    }
+
+    public function set($fields,$values) {
+        if($this->_type == 'update') {
+            if(!is_array($fields))
+                $fields = array($fields=>$values);
+            elseif(!is_null($values))
+                $fields = array_combine($fields,$values);
+            foreach($fields as $field=>$value) {
+                $this->_fields[] = $field;
+                $this->_values[] = mysql_real_escape_string($value, $this->_connection);
+            }
         }
         return $this;
     }
