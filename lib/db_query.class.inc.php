@@ -3,7 +3,7 @@
  * db_query is the class that provide MySQL support.
  *
  * @author Cyril Glapa
- * @version 0.1
+ * @version 0.5
  */
 class db_query {
     static private $_last_connection = NULL;
