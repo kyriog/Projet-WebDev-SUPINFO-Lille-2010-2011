@@ -11,6 +11,7 @@ class db_query {
     private $_type = NULL;
     private $_table = NULL;
     private $_fields = array();
+    private $_values = array();
     private $_as = array();
     private $_join = array();
     private $_where = NULL;
@@ -50,6 +51,13 @@ class db_query {
                             $this->_sql .= ' WHERE '.$this->_where;
                     if(!is_null($this->_limit))
                             $this->_sql .= ' LIMIT '.$this->_limit;
+                    $this->_sql .= ';';
+                    break;
+                case 'insert':
+                    $this->_sql  = 'INSERT INTO '.$this->_table;
+                    $this->_sql .= ' (`'.implode('`,`',$this->_fields).'`)';
+                    $this->_sql .= ' VALUES ';
+                    $this->_sql .= '("'.implode('","',$this->_values).'")';
                     $this->_sql .= ';';
                     break;
             }
@@ -144,6 +152,29 @@ class db_query {
     public function limit($limit) {
         if(is_null($this->_limit)) {
             $this->_limit = $limit;
+        }
+        return $this;
+    }
+
+
+    public function insert($table) {
+        if(is_null($this->_type)) {
+            $this->_type = 'insert';
+            $this->_table = $table;
+        }
+        return $this;
+    }
+
+    public function values($fields,$value=NULL) {
+        if($this->_type == 'insert') {
+            if(!is_array($fields))
+                $fields = array($fields=>$value);
+            elseif(!is_null($value))
+                $fields = array_combine($fields,$value);
+            foreach($fields as $field=>$value) {
+                $this->_fields[] = $field;
+                $this->_values[] = mysql_real_escape_string($value, $this->_connection);
+            }
         }
         return $this;
     }
