@@ -60,6 +60,14 @@ class db_query {
                     $this->_sql .= '("'.implode('","',$this->_values).'")';
                     $this->_sql .= ';';
                     break;
+                case 'delete':
+                    $this->_sql = 'DELETE FROM '.$this->_table;
+                    if(!is_null($this->_where))
+                            $this->_sql .= ' WHERE '.$this->_where;
+                    if(!is_null($this->_limit))
+                            $this->_sql .= ' LIMIT '.$this->_limit;
+                    $this->_sql .= ';';
+                    break;
             }
         }
         return $this;
@@ -175,6 +183,14 @@ class db_query {
                 $this->_fields[] = $field;
                 $this->_values[] = mysql_real_escape_string($value, $this->_connection);
             }
+        }
+        return $this;
+    }
+
+    public function delete($table) {
+        if(is_null($this->_type)) {
+            $this->_type = 'delete';
+            $this->_table = $table;
         }
         return $this;
     }
