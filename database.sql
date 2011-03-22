@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Mar 15 Mars 2011 à 15:00
+-- Généré le : Mar 22 Mars 2011 à 15:11
 -- Version du serveur: 5.5.8
 -- Version de PHP: 5.3.5
 
@@ -33,12 +33,6 @@ CREATE TABLE IF NOT EXISTS `articles` (
   `description` text NOT NULL,
   `state` enum('OK','NOK','TR') NOT NULL,
   `place` int(10) unsigned NOT NULL,
-  `field1` varchar(255) NOT NULL,
-  `field2` varchar(255) NOT NULL,
-  `field3` varchar(255) NOT NULL,
-  `field4` varchar(255) NOT NULL,
-  `field5` varchar(255) NOT NULL,
-  `field6` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `place` (`place`),
   KEY `family` (`family`)
@@ -60,7 +54,37 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `address` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `structure` (`structure`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=400000 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=400000 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `dynamic_fields`
+--
+
+CREATE TABLE IF NOT EXISTS `dynamic_fields` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_family` int(10) unsigned NOT NULL,
+  `name` varchar(30) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_family` (`id_family`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `dynamic_values`
+--
+
+CREATE TABLE IF NOT EXISTS `dynamic_values` (
+  `id` int(10) unsigned NOT NULL,
+  `id_field` int(10) unsigned NOT NULL,
+  `id_article` int(10) unsigned NOT NULL,
+  `value` varchar(30) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_field` (`id_field`,`id_article`),
+  KEY `id_article` (`id_article`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -72,15 +96,9 @@ CREATE TABLE IF NOT EXISTS `families` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `parentfamily` int(11) unsigned DEFAULT NULL,
-  `field1` varchar(50) DEFAULT NULL,
-  `field2` varchar(50) DEFAULT NULL,
-  `field3` varchar(50) DEFAULT NULL,
-  `field4` varchar(50) DEFAULT NULL,
-  `field5` varchar(50) DEFAULT NULL,
-  `field6` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `parentfamily` (`parentfamily`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -96,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `loans` (
   `reason` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `customer` (`customer`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=500000 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=500000 ;
 
 -- --------------------------------------------------------
 
@@ -125,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `places` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -150,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `username` varchar(30) NOT NULL,
   `password` varchar(40) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Contraintes pour les tables exportées
@@ -168,6 +186,19 @@ ALTER TABLE `articles`
 --
 ALTER TABLE `customers`
   ADD CONSTRAINT `customers_ibfk_1` FOREIGN KEY (`structure`) REFERENCES `structures` (`id`) ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `dynamic_fields`
+--
+ALTER TABLE `dynamic_fields`
+  ADD CONSTRAINT `dynamic_fields_ibfk_1` FOREIGN KEY (`id_family`) REFERENCES `families` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `dynamic_values`
+--
+ALTER TABLE `dynamic_values`
+  ADD CONSTRAINT `dynamic_values_ibfk_2` FOREIGN KEY (`id_article`) REFERENCES `articles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `dynamic_values_ibfk_1` FOREIGN KEY (`id_field`) REFERENCES `dynamic_fields` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `families`
