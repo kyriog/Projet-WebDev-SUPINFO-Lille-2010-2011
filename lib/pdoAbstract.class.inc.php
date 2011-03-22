@@ -1,13 +1,9 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of pdoAbstract
  *
  * @author thorr
+ * @version 0.1
  */
 class pdoAbstract {
     protected $_pdo;
