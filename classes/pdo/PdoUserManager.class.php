@@ -4,7 +4,7 @@ include_once('PdoManager.class.php');
 class PdoUserManager extends PdoManager {
     
 
-    public function add_user($name, $password = null){
+    public function add_user($name, $password){
         $query = $this->pdo->prepare('INSERT INTO users(name, password) VALUES (:name, :password)');
         $query->bindValue(':name', $name);
         $query->bindValue(':password', $password);
