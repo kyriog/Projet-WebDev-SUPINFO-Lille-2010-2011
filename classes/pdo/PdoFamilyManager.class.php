@@ -11,11 +11,11 @@ class PdoFamilyManager extends PdoManager {
         return $this->pdo->lastInsertId();
     }
 
-    public function edit_family($id, $name, $parent_family){
+    public function edit_family(familiesModel $family){
         $query = $this->pdo->prepare('UPDATE families SET name = :name, parentfamily = :parent_family WHERE id = :id');
-        $query->bindValue(':id', $id);
-        $query->bindValue(':name', $name);
-        $query->bindValue(':parent_family', $parent_family);
+        $query->bindValue(':id', $family->getId());
+        $query->bindValue(':name', $family->getName());
+        $query->bindValue(':parent_family', $family->getParentfamily());
         $query->execute();
     }
 
