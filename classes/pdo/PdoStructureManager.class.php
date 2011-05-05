@@ -3,17 +3,18 @@ include_once('PdoManager.class.php');
 
 class PdoStructureManager extends PdoManager {
     
-    public function add_structure($name){
+    public function add_structure($structure){
         $query = $this->pdo->prepare('INSERT INTO structures(name) VALUES (:name)');
-        $query->bindValue(':name', $name);
+        $query->bindValue(':id', $structure->getId());
+        $query->bindValue(':name', $structure>getName());
         $query->execute();
         return $this->pdo->lastInsertId();
     }
-
-    public function edit_structure(placesModel $structures){
+    
+    public function edit_structure($structure){
         $query = $this->pdo->prepare('UPDATE structures SET name = :name WHERE id = :id');
-        $query->bindValue(':id', $structures->getId());
-        $query->bindValue(':name', $structures>getName());
+        $query->bindValue(':id', $structure->getId());
+        $query->bindValue(':name', $structure>getName());
         $query->execute();
     }
 

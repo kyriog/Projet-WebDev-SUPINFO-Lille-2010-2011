@@ -3,17 +3,18 @@ include_once('PdoManager.class.php');
 
 class PdoPlaceManager extends PdoManager {
     
-    public function add_place($name){
+    public function add_place($place){
         $query = $this->pdo->prepare('INSERT INTO places(name) VALUES (:name)');
-        $query->bindValue(':name', $name);
+        $query->bindValue(':id', $place->getId());
+        $query->bindValue(':name', $place->getName());
         $query->execute();
         return $this->pdo->lastInsertId();
     }
 
-    public function edit_place($places){
+    public function edit_place($place){
         $query = $this->pdo->prepare('UPDATE places SET name = :name WHERE id = :id');
-        $query->bindValue(':id', $places->getId());
-        $query->bindValue(':name', $places>getName());
+        $query->bindValue(':id', $place->getId());
+        $query->bindValue(':name', $place->getName());
         $query->execute();
     }
 
