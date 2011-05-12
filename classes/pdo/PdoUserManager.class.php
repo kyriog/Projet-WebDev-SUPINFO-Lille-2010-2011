@@ -26,5 +26,16 @@ class PdoUserManager extends PdoManager {
         $query->bindValue(':id', $id);
         $query->execute();
     }
+    
+    public function login($user) {
+        $query = $this->pdo->prepare('SELECT * FROM users WHERE username=:name AND password=:password');
+        $query->bindValue(':name', $user->getName());
+        $query->bindValue(':password', md5($user->getPassword()));
+        $query->execute();
+        if($value = $query->fetchColumn(PDO::FETCH_ASSOC))
+        {
+            return new userModel($value['id'], $value['username'], $value['password']);
+        }
+    }
 }
 ?>

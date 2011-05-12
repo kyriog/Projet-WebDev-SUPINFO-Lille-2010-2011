@@ -13,12 +13,12 @@ include_once('classes/pdo/PdoUserManager.class.php');
 
 include_once('classes/model/articlesModel.class.php');
 include_once('classes/model/customersModel.class.php');
-include_once('classes/model/dynamic_fielsModel.class.php');
+include_once('classes/model/dynamic_fieldsModel.class.php');
 include_once('classes/model/dynamic_valuesModel.class.php');
 include_once('classes/model/familiesModel.class.php');
 include_once('classes/model/loansModel.class.php');
 include_once('classes/model/loans_articlesModel.class.php');
 include_once('classes/model/placesModel.class.php');
 include_once('classes/model/structuresModel.class.php');
-include_once('classes/model/usersModel.class.php');
+include_once('classes/model/userModel.class.php');
 ?>
