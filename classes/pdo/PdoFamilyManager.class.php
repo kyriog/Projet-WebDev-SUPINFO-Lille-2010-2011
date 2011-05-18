@@ -30,7 +30,7 @@ class PdoFamilyManager extends PdoManager {
         $query->execute();
         $array = array();
         while($value = $query->fetch(PDO::FETCH_ASSOC)) {
-            if($value['parentfamily']) {
+            /*if($value['parentfamily']) {
                 $subquery = $this->pdo->prepare("SELECT name FROM families WHERE id = :parentid");
                 $subquery->bindValue(":parentid", $value['parentfamily']);
                 $subquery->execute();
@@ -39,12 +39,29 @@ class PdoFamilyManager extends PdoManager {
                 array_push($array, $family);
 
             }
-            else {
+            else {*/
             $family = new familiesModel($value['id'], $value['name'], $value['parentfamily']);
             array_push($array, $family);
-            }
+            //}
         }
         return $array;
+    }
+    
+    public function familyWithId($id) {
+        $query = $this->pdo->prepare("SELECT * FROM families WHERE id = :id");
+        $query->bindValue(":id", $id);
+        $query->execute();
+        $value = $query->fetch(PDO::FETCH_ASSOC);
+        $family = new familiesModel($value['id'], $value['name'], $value['parentfamily']);
+        return $family;
+    }
+    
+    public function nameWithId($id) {
+        $query = $this->pdo->prepare("SELECT name FROM families WHERE id = :id");
+        $query->bindValue(":id", $id);
+        $query->execute();
+        $value = $query->fetch(PDO::FETCH_ASSOC);
+        return $value['name'];
     }
 }
 ?>
