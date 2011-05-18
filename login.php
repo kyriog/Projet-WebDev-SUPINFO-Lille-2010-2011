@@ -3,6 +3,8 @@ session_start();
 require_once 'include.php';
 if(isset($_POST['username']) && isset($_POST['password'])) {
     $userManager = new PdoUserManager();
+    
+    //Ici le "user =" servira si on a besoin de récupérer les données du client, sinon on peut supprimer cette partie.
     if($user = $userManager->login(new userModel(null, $_POST['username'], $_POST['password'])))
     {
         //Variables de sessions à créer ici

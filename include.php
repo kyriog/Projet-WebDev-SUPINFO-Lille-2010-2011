@@ -1,4 +1,4 @@
-<?php
+<?php 
 include_once('classes/pdo/PdoManager.class.php');
 include_once('classes/pdo/PdoArticleManager.class.php');
 include_once('classes/pdo/PdoCustomerManager.class.php');

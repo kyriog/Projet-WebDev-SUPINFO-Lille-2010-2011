@@ -24,5 +24,27 @@ class PdoFamilyManager extends PdoManager {
         $query->bindValue(':id', $id);
         $query->execute();
     }
+    
+    public function retrieve_families() {
+        $query = $this->pdo->prepare('SELECT * FROM families');
+        $query->execute();
+        $array = array();
+        while($value = $query->fetch(PDO::FETCH_ASSOC)) {
+            if($value['parentfamily']) {
+                $subquery = $this->pdo->prepare("SELECT name FROM families WHERE id = :parentid");
+                $subquery->bindValue(":parentid", $value['parentfamily']);
+                $subquery->execute();
+                $value2 = $subquery->fetch(PDO::FETCH_ASSOC);
+                $family = new familiesModel($value['id'], $value['name'], $value2['name']);
+                array_push($array, $family);
+
+            }
+            else {
+            $family = new familiesModel($value['id'], $value['name'], $value['parentfamily']);
+            array_push($array, $family);
+            }
+        }
+        return $array;
+    }
 }
 ?>
