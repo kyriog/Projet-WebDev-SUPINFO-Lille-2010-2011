@@ -3,10 +3,13 @@ include_once('PdoManager.class.php');
 
 class PdoFamilyManager extends PdoManager {
 
-    public function add_family($name, $parent_family = null){
+    public function add_family($family){
         $query = $this->pdo->prepare('INSERT INTO families(name, parentfamily) VALUES (:name, :parent_family)');
-        $query->bindValue(':name', $name);
-        $query->bindValue(':parent_family', $parent_family);
+        $query->bindValue(':name', $family->getName());
+        if($family->getParentfamily() != 0)
+            $query->bindValue(':parent_family', $family->getParentfamily());
+        else
+            $query->bindValue(':parent_family', NULL);
         $query->execute();
         return $this->pdo->lastInsertId();
     }
@@ -26,7 +29,7 @@ class PdoFamilyManager extends PdoManager {
     }
     
     public function retrieve_families() {
-        $query = $this->pdo->prepare('SELECT * FROM families');
+        $query = $this->pdo->prepare('SELECT * FROM families ORDER BY parentfamily');
         $query->execute();
         $array = array();
         while($value = $query->fetch(PDO::FETCH_ASSOC)) {

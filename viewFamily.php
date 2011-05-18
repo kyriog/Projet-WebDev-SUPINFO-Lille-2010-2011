@@ -22,7 +22,7 @@ $familyManager = new PdoFamilyManager();
             }
         </style>
         <table>
-            <tr><th>Name</th><th>Parent Family</th><th></th></tr>
+            <tr><th>Name</th><th>Parent Family</th></tr>
             <?php 
             $families = $familyManager->retrieve_families();
             foreach($families as $value) {        
@@ -30,5 +30,6 @@ $familyManager = new PdoFamilyManager();
             <tr><td><?php echo $value->getName(); ?></td><td><?php echo $familyManager->nameWithId($value->getParentfamily()); ?></td><td><a href="editFamily.php?id=<?php echo $value->getId();?>">Editer</a></td></tr>
             <?php } ?>
         </table>    
+        <p><a href="editFamily.php">Add a family</a></p>
     </body>
 </html>

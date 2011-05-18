@@ -13,7 +13,7 @@ if(isset($_GET['id'])){
         </head>
         <body>
             <form action="editFamily.php" method="post">
-                <label for="name">Name :</label><input type="text" id="name" name="name" value="<?php echo $family->getName();?>"/><br />
+                <label for="name">Name : </label><input type="text" id="name" name="name" value="<?php echo $family->getName();?>"/><br />
                 <label for="parentfamily">Parent Family : </label><select name="parentfamily" id="parentfamily">
                     <?php foreach ($families as $value) {
                         if($value->getId() != $_GET['id']) {?>
@@ -33,4 +33,34 @@ else if(!isset($_GET['id']) && isset($_POST['name']) && isset($_POST['parentfami
     $family = new familiesModel($_POST['id'], $_POST['name'], $_POST['parentfamily']);
     $familyManager->edit_family($family);
 }
-?>
+
+else if(!isset($_GET['id']) && isset($_POST['name']) && isset($_POST['parentfamily'])) {
+    $family = new familiesModel(null, $_POST['name'], $_POST['parentfamily']);
+    $familyManager->add_family($family);
+}
+
+else {
+    $families = $familyManager->retrieve_families();
+    ?>
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <title></title>
+        </head>
+        <body>
+            <form action="editFamily.php" method="post">
+                <label for="name">Name : </label><input type="text" id="name" name="name"/><br />
+                <label for="parentfamily">Parent Family : </label><select name="parentfamily" id="parentfamily">
+                    <option value="0">No parent family</option>
+                    <?php foreach ($families as $value) { ?>
+                    <option value="<?php echo $value->getId();?>"><?php echo $value->getName();?></option>
+                    <?php 
+                    }?>
+                </select> <br />
+                <input type="submit" value="Send !"/>
+            </form>
+        </body>
+    </html>
+<?php } ?>
+
