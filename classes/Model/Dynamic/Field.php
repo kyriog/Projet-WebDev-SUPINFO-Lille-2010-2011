@@ -1,6 +1,6 @@
 <?php
 
-class dynamic_fieldsModel {
+class Model_Dynamic_Field {
     private $id, $id_family, $name;
     
     function __construct($id, $id_family, $name) {

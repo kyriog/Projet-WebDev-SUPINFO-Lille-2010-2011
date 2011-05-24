@@ -1,14 +1,14 @@
 <?php
 
-class loansModel {
-    private $id, $customer, $begindate, $enddate, $reason;
+class Model_Loan_Article {
+    private $id, $loan, $article, $begindate, $enddate;
     
-    function __construct($id, $customer, $begindate, $enddate, $reason) {
+    function __construct($id, $loan, $article, $begindate, $enddate) {
         $this->id = $id;
-        $this->customer = $customer;
+        $this->loan = $loan;
+        $this->article = $article;
         $this->begindate = $begindate;
         $this->enddate = $enddate;
-        $this->reason = $reason;
     }
 
     public function getId() {
@@ -19,12 +19,20 @@ class loansModel {
         $this->id = $id;
     }
 
-    public function getCustomer() {
-        return $this->customer;
+    public function getLoan() {
+        return $this->loan;
     }
 
-    public function setCustomer($customer) {
-        $this->customer = $customer;
+    public function setLoan($loan) {
+        $this->loan = $loan;
+    }
+
+    public function getArticle() {
+        return $this->article;
+    }
+
+    public function setArticle($article) {
+        $this->article = $article;
     }
 
     public function getBegindate() {
@@ -42,15 +50,6 @@ class loansModel {
     public function setEnddate($enddate) {
         $this->enddate = $enddate;
     }
-
-    public function getReason() {
-        return $this->reason;
-    }
-
-    public function setReason($reason) {
-        $this->reason = $reason;
-    }
-
 
 }
 

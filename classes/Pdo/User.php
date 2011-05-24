@@ -1,7 +1,7 @@
 <?php
 include_once('PdoManager.class.php');
 
-class PdoUserManager extends PdoManager {
+class Pdo_User extends Pdo_Manager {
     
 
     public function add_user($user){
@@ -34,7 +34,7 @@ class PdoUserManager extends PdoManager {
         $query->execute();
         if($value = $query->fetchColumn(PDO::FETCH_ASSOC))
         {
-            return new userModel($value['id'], $value['username'], $value['password']);
+            return new Model_User($value['id'], $value['username'], $value['password']);
         }
     }
 }

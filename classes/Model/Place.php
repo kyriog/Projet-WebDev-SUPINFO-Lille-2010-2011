@@ -1,6 +1,6 @@
 <?php
 
-class placesModel {
+class Model_Place {
     private $id, $name;
     
     function __construct($id, $name) {

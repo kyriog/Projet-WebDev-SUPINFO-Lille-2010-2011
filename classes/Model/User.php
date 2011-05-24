@@ -1,12 +1,12 @@
 <?php
 
-class familiesModel {
-    private $id, $name, $parentfamily;
+class Model_User {
+    private $id, $name, $password;
     
-    function __construct($id, $name, $parentfamily) {
+    function __construct($id, $name, $password) {
         $this->id = $id;
         $this->name = $name;
-        $this->parentfamily = $parentfamily;
+        $this->password = $password;
     }
 
     public function getId() {
@@ -25,14 +25,13 @@ class familiesModel {
         $this->name = $name;
     }
 
-    public function getParentfamily() {
-        return $this->parentfamily;
+    public function getPassword() {
+        return $this->password;
     }
 
-    public function setParentfamily($parentfamily) {
-        $this->parentfamily = $parentfamily;
+    public function setPassword($password) {
+        $this->password = $password;
     }
-
 
 }
 

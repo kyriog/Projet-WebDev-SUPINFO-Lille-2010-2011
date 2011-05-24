@@ -1,7 +1,7 @@
 <?php
 include_once('PdoManager.class.php');
 
-class PdoArticleManager extends PdoManager {
+class Pdo_Dynamic_Value extends Pdo_Manager {
     
 }
 ?>

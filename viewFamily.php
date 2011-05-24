@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once 'include.php';
-$familyManager = new PdoFamilyManager();
+$familyManager = new Pdo_Family();
 ?>
 <!DOCTYPE html>
 <html>
