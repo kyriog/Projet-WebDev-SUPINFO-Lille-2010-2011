@@ -1,5 +1,6 @@
 <?php
-require_once 'include.php';
+require_once('config.php');
+require_once('autoload.php');
 $familyManager = new Pdo_Family();
 if(isset($_GET['id'])){
     $family = $familyManager->familyWithId($_GET['id']);

@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once 'include.php';
+require_once('config.php');
+require_once('autoload.php');
 if(isset($_POST['username']) && isset($_POST['password'])) {
     $userManager = new Pdo_User();
     
