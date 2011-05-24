@@ -1,6 +1,4 @@
 <?php
-include_once('PdoManager.class.php');
-
 class Pdo_Place extends Pdo_Manager {
     
     public function add_place($place){

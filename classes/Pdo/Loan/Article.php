@@ -1,6 +1,4 @@
 <?php
-include_once('PdoManager.class.php');
-
 class Pdo_Loan_Article extends Pdo_Manager {
     
     public function add_loan_article($loan_article){

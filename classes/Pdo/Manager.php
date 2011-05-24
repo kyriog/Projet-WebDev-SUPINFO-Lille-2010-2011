@@ -1,5 +1,4 @@
 <?php
-
 abstract class Pdo_Manager {
     const USER = 'root';
     const PASSWORD = '';

@@ -1,6 +1,4 @@
 <?php
-include_once('PdoManager.class.php');
-
 class Pdo_User extends Pdo_Manager {
     
 
