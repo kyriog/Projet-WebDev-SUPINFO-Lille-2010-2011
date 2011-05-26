@@ -1,39 +1,57 @@
 <?php
 
 class Model_Family {
-    private $id, $name, $parentfamily;
+    private $_id, $_name, $_parentfamily;
+    private static $_manager;
     
-    function __construct($id, $name, $parentfamily) {
-        $this->id = $id;
-        $this->name = $name;
-        $this->parentfamily = $parentfamily;
+    function __construct($id = null) {
+        self::_init();
+        if(is_null($id)) {
+            $this->_id = null;
+            $this->_name = null;
+            $this->_parentfamily = null;
+        }
+        else {
+            $family = self::$_manager->familyWithId($id);
+            $this->_id = $family['id'];
+            $this->_name = $family['name'];
+            $this->_parentfamily = $family['parentfamily'];
+        }
     }
 
+    private static function _init() {
+        if(!is_object(self::$_manager)) self::$_manager = new Pdo_Family();
+    }
+    
     public function getId() {
-        return $this->id;
+        return $this->_id;
     }
 
     public function setId($id) {
-        $this->id = $id;
+        $this->_id = $id;
     }
 
     public function getName() {
-        return $this->name;
+        return $this->_name;
     }
 
     public function setName($name) {
-        $this->name = $name;
+        $this->_name = $name;
     }
 
     public function getParentfamily() {
-        return $this->parentfamily;
+        return $this->_parentfamily;
     }
 
     public function setParentfamily($parentfamily) {
-        $this->parentfamily = $parentfamily;
+        $this->_parentfamily = $parentfamily;
     }
 
-
+    public static function getAllFamilies() {
+        self::_init();
+        return self::$_manager->getAllFamilies();
+    }
+    
 }
 
 ?>
