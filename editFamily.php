@@ -51,7 +51,9 @@ else {
             <script type="text/javascript" src="jquery-1.6.1.min.js"></script>
             <script type="text/javascript">
                 $(document).ready(function() {
-                    
+                    $("#add-field").click(function() {
+                        $("#fields").append('<br /><input type="text" name="field[]" />');
+                    })
                 })
             </script>
         </head>
@@ -65,15 +67,10 @@ else {
                     <?php 
                     }?>
                 </select> <br />
-                <table>
-                <?php for($i = 1; $i<=3; $i++) {
-                ?>
-                <tr>
-                    <td><label for="champ<?php echo $i;?>">Champ <?php echo $i; ?> : </label><input type="text" name="champ<?php echo $i; ?>" id="champ<?php echo $i; ?>" tabindex="<?php echo $i+2; ?>"/></td>
-                <td><label for="champ<?php echo $i+3; ?>">Champ <?php echo $i+3; ?> : </label><input type="text" name="champ<?php echo $i+3; ?>" id="champ<?php echo $i+3; ?>" tabindex="<?php echo $i+5; ?>"/></td>
-                </tr>
-                <?php } ?>
-                </table>
+                <span id="fields">
+                    <input type="text" name="field[]" />
+                </span>
+                <span id="add-field">Ajouter un champs</span><br />
                 <input type="submit" value="Send !"/>
             </form>
         </body>
