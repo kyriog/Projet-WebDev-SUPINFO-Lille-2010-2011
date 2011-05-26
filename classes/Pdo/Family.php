@@ -1,7 +1,5 @@
 <?php
-include_once('PdoManager.class.php');
-
-class PdoFamilyManager extends PdoManager {
+class Pdo_Family extends Pdo_Manager {
 
     public function add_family($family){
         $query = $this->pdo->prepare('INSERT INTO families(name, parentfamily) VALUES (:name, :parent_family)');
@@ -43,7 +41,7 @@ class PdoFamilyManager extends PdoManager {
 
             }
             else {*/
-            $family = new familiesModel($value['id'], $value['name'], $value['parentfamily']);
+            $family = new Model_Family($value['id'], $value['name'], $value['parentfamily']);
             array_push($array, $family);
             //}
         }
@@ -55,7 +53,7 @@ class PdoFamilyManager extends PdoManager {
         $query->bindValue(":id", $id);
         $query->execute();
         $value = $query->fetch(PDO::FETCH_ASSOC);
-        $family = new familiesModel($value['id'], $value['name'], $value['parentfamily']);
+        $family = new Model_Family($value['id'], $value['name'], $value['parentfamily']);
         return $family;
     }
     

@@ -1,6 +1,6 @@
 <?php
 
-class customersModel {
+class Model_Customer {
     private $id, $lname, $fname, $phone, $structure, $function, $address;
     
     function __construct($id, $lname, $fname, $phone, $structure, $function, $address) {

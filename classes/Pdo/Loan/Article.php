@@ -1,7 +1,5 @@
 <?php
-include_once('PdoManager.class.php');
-
-class PdoLoan_ArticlesManager extends PdoManager {
+class Pdo_Loan_Article extends Pdo_Manager {
     
     public function add_loan_article($loan_article){
         $query = $this->pdo->prepare('INSERT INTO loans_articles(loan, article, begindate, enddate) VALUES (:loan, :article, :begindate, :enddate)');

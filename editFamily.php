@@ -1,6 +1,7 @@
 <?php
-require_once 'include.php';
-$familyManager = new PdoFamilyManager();
+require_once('config.php');
+require_once('autoload.php');
+$familyManager = new Pdo_Family();
 if(isset($_GET['id'])){
     $family = $familyManager->familyWithId($_GET['id']);
     $families = $familyManager->retrieve_families();
@@ -30,12 +31,12 @@ if(isset($_GET['id'])){
     
     } 
 else if(!isset($_GET['id']) && isset($_POST['name']) && isset($_POST['parentfamily']) && isset($_POST['id'])) {
-    $family = new familiesModel($_POST['id'], $_POST['name'], $_POST['parentfamily']);
+    $family = new Model_Family($_POST['id'], $_POST['name'], $_POST['parentfamily']);
     $familyManager->edit_family($family);
 }
 
 else if(!isset($_GET['id']) && isset($_POST['name']) && isset($_POST['parentfamily'])) {
-    $family = new familiesModel(null, $_POST['name'], $_POST['parentfamily']);
+    $family = new Model_Family(null, $_POST['name'], $_POST['parentfamily']);
     $familyManager->add_family($family);
 }
 

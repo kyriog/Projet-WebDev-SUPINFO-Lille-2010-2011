@@ -1,7 +1,5 @@
 <?php
-include_once('PdoManager.class.php');
-
-class PdoStructureManager extends PdoManager {
+class Pdo_Structure extends Pdo_Manager {
     
     public function add_structure($structure){
         $query = $this->pdo->prepare('INSERT INTO structures(name) VALUES (:name)');

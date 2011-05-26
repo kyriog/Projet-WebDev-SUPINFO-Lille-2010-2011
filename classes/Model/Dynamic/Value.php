@@ -1,6 +1,6 @@
 <?php
 
-class dynamic_valuesModel {
+class Model_Dynamic_Value {
     private $id, $id_field, $id_article, $value;
     
     function __construct($id, $id_field, $id_article, $value) {

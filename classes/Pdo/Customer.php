@@ -1,7 +1,5 @@
 <?php
-include_once('PdoManager.class.php');
-
-class PdoCustomerManager extends PdoManager {
+class Pdo_Customer extends Pdo_Manager {
     
     public function add_customer($customer){
         $query = $this->pdo->prepare('INSERT INTO customers(lname, fname, phone, structure, function, address) VALUES (:lname, :fname, :phone, :structure, :function, :address)');

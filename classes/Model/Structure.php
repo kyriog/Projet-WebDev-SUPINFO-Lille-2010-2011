@@ -1,6 +1,6 @@
 <?php
 
-class structuresModel {
+class Model_Structure {
     private $id, $name;
     
     function __construct($id, $name) {

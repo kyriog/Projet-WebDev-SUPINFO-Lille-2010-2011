@@ -1,6 +1,6 @@
 <?php
 
-class articlesModel {
+class Model_Article {
     public $id, $barcode, $family, $quantity, $description, $state, $place;
     
     function __construct($id, $barcode, $family, $quantity, $description, $state, $place) {

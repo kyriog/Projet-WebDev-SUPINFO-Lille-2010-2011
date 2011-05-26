@@ -1,7 +1,8 @@
 <?php
 session_start();
-require_once 'include.php';
-$familyManager = new PdoFamilyManager();
+require_once('config.php');
+require_once('autoload.php');
+$familyManager = new Pdo_Family();
 ?>
 <!DOCTYPE html>
 <html>
