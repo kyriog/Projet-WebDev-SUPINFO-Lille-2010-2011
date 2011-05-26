@@ -2,7 +2,6 @@
 session_start();
 require_once('config.php');
 require_once('autoload.php');
-$familyManager = new Pdo_Family();
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,10 +24,11 @@ $familyManager = new Pdo_Family();
         <table>
             <tr><th>Name</th><th>Parent Family</th></tr>
             <?php 
-            $families = $familyManager->retrieve_families();
-            foreach($families as $value) {        
+            $families = Model_Family::getAllFamilies();
+            foreach($families as $value) { 
+                $parent_family = new Model_Family($value->getParentfamily());
             ?>
-            <tr><td><?php echo $value->getName(); ?></td><td><?php echo $familyManager->nameWithId($value->getParentfamily()); ?></td><td><a href="editFamily.php?id=<?php echo $value->getId();?>">Editer</a></td></tr>
+            <tr><td><?php echo $value->getName(); ?></td><td><?php echo $parent_family->getName(); ?></td><td><a href="editFamily.php?id=<?php echo $value->getId();?>">Editer</a></td></tr>
             <?php } ?>
         </table>    
         <p><a href="editFamily.php">Add a family</a></p>

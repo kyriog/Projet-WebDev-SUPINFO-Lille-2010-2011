@@ -70,7 +70,7 @@ else {
                 ?>
                 <tr>
                     <td><label for="champ<?php echo $i;?>">Champ <?php echo $i; ?> : </label><input type="text" name="champ<?php echo $i; ?>" id="champ<?php echo $i; ?>" tabindex="<?php echo $i+2; ?>"/></td>
-                <td><label for="champ<?php echo $i+3; ?>">Champ <?php echo $i+3; ?> : </label><input type="text" name="champ<?php echo $i+3; ?>" id="champ<?php echo $i+3; ?>" tabindex="<?php echo $i+5; ?>"/></td>
+                    <td><label for="champ<?php echo $i+3; ?>">Champ <?php echo $i+3; ?> : </label><input type="text" name="champ<?php echo $i+3; ?>" id="champ<?php echo $i+3; ?>" tabindex="<?php echo $i+5; ?>"/></td>
                 </tr>
                 <?php } ?>
                 </table>
