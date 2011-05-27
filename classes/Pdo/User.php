@@ -25,15 +25,23 @@ class Pdo_User extends Pdo_Manager {
         $query->execute();
     }
     
-    public function login($user) {
+    public function login($name, $password) {
         $query = $this->pdo->prepare('SELECT * FROM users WHERE username=:name AND password=:password');
-        $query->bindValue(':name', $user->getName());
-        $query->bindValue(':password', md5($user->getPassword()));
+        $query->bindValue(':name', $name);
+        $query->bindValue(':password', md5($password));
         $query->execute();
-        if($value = $query->fetchColumn(PDO::FETCH_ASSOC))
+        if($value = $query->fetch(PDO::FETCH_ASSOC))
         {
-            return new Model_User($value['id'], $value['username'], $value['password']);
+            return new Model_User($value['id']);
         }
+    }
+    
+    public function getUser($id) {
+        $query = $this->pdo->prepare("SELECT * FROM users WHERE id=:id");
+        $query->bindValue(":id", $id);
+        $query->execute();
+        $value = $query->fetch(PDO::FETCH_ASSOC);
+        return $value;
     }
 }
 ?>
