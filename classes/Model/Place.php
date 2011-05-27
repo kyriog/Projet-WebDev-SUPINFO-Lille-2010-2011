@@ -6,6 +6,7 @@ class Model_Place {
 
 
     function __construct($id = null) {
+        self::init();
         if(is_null($id)) {
             $this->_id = null;
             $this->_name = null;
@@ -18,7 +19,7 @@ class Model_Place {
         }
     }
 
-    public function init() {
+    public static function init() {
         if(!is_object(self::$_manager)) self::$_manager = new Pdo_Place();
     }
     public function getId() {
