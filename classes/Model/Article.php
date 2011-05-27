@@ -29,7 +29,7 @@ class Model_Article {
     }
 
     public static function init() {
-        if(!is_object(self::$_manager)) self::$_manager = new Pdo_Place();
+        if(!is_object(self::$_manager)) self::$_manager = new Pdo_Article();
     }
     
     public function get_id() {
