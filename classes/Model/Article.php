@@ -1,73 +1,93 @@
 <?php
 
 class Model_Article {
-    public $id, $barcode, $family, $quantity, $description, $state, $place;
+    private $_id, $_barcode, $_family, $_quantity, $_description, $_state, $_place;
+    private abstract $_manager;
+
+
+    function __construct($id = null) {
+        self::init();
+        if(is_null($id)) {
+            $this->_id=null;
+            $this->_barcode=null;
+            $this->_family=null;
+            $this->_quantity=null;
+            $this->_description=null;
+            $this->_state=null;
+            $this->_place=null;
+        }
+        else {
+            $article = $this->_manager->getArticle($id);
+            $this->_id=$article['id'];
+            $this->_barcode=$article['barcode'];
+            $this->_family=$article['family'];
+            $this->_quantity=$article['quantity'];
+            $this->_description=$article['description'];
+            $this->_state=$article['state'];
+            $this->_place=$article['place'];
+        }
+    }
+
+    public static function init() {
+        if(!is_object(self::$_manager)) self::$_manager = new Pdo_Article();
+    }
     
-    function __construct($id, $barcode, $family, $quantity, $description, $state, $place) {
-        $this->id = $id;
-        $this->barcode = $barcode;
-        $this->family = $family;
-        $this->quantity = $quantity;
-        $this->description = $description;
-        $this->state = $state;
-        $this->place = $place;
-    }
-    
-    public function getId() {
-        return $this->id;
+    public function get_id() {
+        return $this->_id;
     }
 
-    public function setId($id) {
-        $this->id = $id;
+    public function set_id($id) {
+        $this->_id = $id;
     }
 
-    public function getBarcode() {
-        return $this->barcode;
+    public function get_barcode() {
+        return $this->_barcode;
     }
 
-    public function setBarcode($barcode) {
-        $this->barcode = $barcode;
+    public function set_barcode($barcode) {
+        $this->_barcode = $barcode;
     }
 
-    public function getFamily() {
-        return $this->family;
+    public function get_family() {
+        return $this->_family;
     }
 
-    public function setFamily($family) {
-        $this->family = $family;
+    public function set_family($family) {
+        $this->_family = $family;
     }
 
-    public function getQuantity() {
-        return $this->quantity;
+    public function get_quantity() {
+        return $this->_quantity;
     }
 
-    public function setQuantity($quantity) {
-        $this->quantity = $quantity;
+    public function set_quantity($quantity) {
+        $this->_quantity = $quantity;
     }
 
-    public function getDescription() {
-        return $this->description;
+    public function get_description() {
+        return $this->_description;
     }
 
-    public function setDescription($description) {
-        $this->description = $description;
+    public function set_description($description) {
+        $this->_description = $description;
     }
 
-    public function getState() {
-        return $this->state;
+    public function get_state() {
+        return $this->_state;
     }
 
-    public function setState($state) {
-        $this->state = $state;
+    public function set_state($state) {
+        $this->_state = $state;
     }
 
-    public function getPlace() {
-        return $this->place;
+    public function get_place() {
+        return $this->_place;
     }
 
-    public function setPlace($place) {
-        $this->place = $place;
+    public function set_place($place) {
+        $this->_place = $place;
     }
+
 
 }
 

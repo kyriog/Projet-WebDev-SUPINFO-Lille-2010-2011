@@ -21,8 +21,13 @@ class Pdo_Place extends Pdo_Manager {
         $query->bindValue(':id', $id);
         $query->execute();
     }
-}
-?>
-
+    
+    public function getPlace($id){
+        $query = $this->pdo->prepare('SELECT * FROM places WHERE id = :id');
+        $query->bindValue(':id', $id);
+        $query->execute();
+        $value = $query->fetch(PDO::FETCH_ASSOC);
+        return $value;
+    }
 }
 ?>
