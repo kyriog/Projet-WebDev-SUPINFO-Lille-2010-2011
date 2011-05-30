@@ -1,72 +1,90 @@
 <?php
 
 class Model_Customer {
-    private $id, $lname, $fname, $phone, $structure, $function, $address;
+    private $_id, $_lname, $_fname, $_phone, $_structure, $_function, $_address;
+    private static $_manager;
     
-    function __construct($id, $lname, $fname, $phone, $structure, $function, $address) {
-        $this->id = $id;
-        $this->lname = $lname;
-        $this->fname = $fname;
-        $this->phone = $phone;
-        $this->structure = $structure;
-        $this->function = $function;
-        $this->address = $address;
+    function __construct($id = null) {
+        self::_init();
+        if(is_null($id)) {
+            $this->_id = null;
+            $this->_lname = null;
+            $this->_fname = null;
+            $this->_phone = null;
+            $this->_structure = null;
+            $this->_function = null;
+            $this->_address = null;
+        }
+        else {
+            $customer = self::$_manager->getCustomer($id);
+            $this->_id = $customer['id'];
+            $this->_lname = $customer['lname'];
+            $this->_fname = $customer['fname'];
+            $this->_phone = $customer['phone'];
+            $this->_structure = $customer['structure'];
+            $this->_function = $customer['function'];
+            $this->_address = $customer['address'];
+        }
+    }
+    
+    private static function _init() {
+        if(!is_object(self::$_manager)) self::$_manager = new Pdo_Customer();
     }
     
     public function getId() {
-        return $this->id;
+        return $this->_id;
     }
 
     public function setId($id) {
-        $this->id = $id;
+        $this->_id = $id;
     }
 
     public function getLname() {
-        return $this->lname;
+        return $this->_lname;
     }
 
     public function setLname($lname) {
-        $this->lname = $lname;
+        $this->_lname = $lname;
     }
 
     public function getFname() {
-        return $this->fname;
+        return $this->_fname;
     }
 
     public function setFname($fname) {
-        $this->fname = $fname;
+        $this->_fname = $fname;
     }
 
     public function getPhone() {
-        return $this->phone;
+        return $this->_phone;
     }
 
     public function setPhone($phone) {
-        $this->phone = $phone;
+        $this->_phone = $phone;
     }
 
     public function getStructure() {
-        return $this->structure;
+        return $this->_structure;
     }
 
     public function setStructure($structure) {
-        $this->structure = $structure;
+        $this->_structure = $structure;
     }
 
     public function getFunction() {
-        return $this->function;
+        return $this->_function;
     }
 
     public function setFunction($function) {
-        $this->function = $function;
+        $this->_function = $function;
     }
 
     public function getAddress() {
-        return $this->address;
+        return $this->_address;
     }
 
     public function setAddress($address) {
-        $this->address = $address;
+        $this->_address = $address;
     }
 
 }

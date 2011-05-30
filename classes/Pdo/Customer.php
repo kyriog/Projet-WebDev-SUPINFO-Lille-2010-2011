@@ -30,5 +30,12 @@ class Pdo_Customer extends Pdo_Manager {
         $query->bindValue(':id', $id);
         $query->execute();
     }
+    
+    public function getCustomer($id) {
+        $query = $this->pdo->prepare("SELECT * FROM customers WHERE id = :id");
+        $query->bindValue(':id', $id);
+        $query->execute();
+        return $query->fetch(PDO::FETCH_ASSOC);
+    }
 }
 ?>
