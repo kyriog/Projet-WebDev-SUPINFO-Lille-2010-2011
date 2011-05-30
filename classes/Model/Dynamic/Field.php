@@ -5,6 +5,7 @@ class Model_Dynamic_Field {
     private static $_manager;
     
     function __construct($id = null) {
+        self::init();
         if(is_null($id))
         {
             $this->_id = null;
