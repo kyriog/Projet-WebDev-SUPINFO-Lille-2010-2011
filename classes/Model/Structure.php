@@ -1,27 +1,40 @@
 <?php
 
 class Model_Structure {
-    private $id, $name;
+    private $_id, $_name;
+    private static $_manager;
     
-    function __construct($id, $name) {
-        $this->id = $id;
-        $this->name = $name;
+    function __construct($id = null) {
+        self::init();
+        if(is_null($id)) {
+            $this->_id = null;
+            $this->_name = null;
+        }
+        else {
+            $structure = self::$_manager->getStructure($id);
+            $this->_id=$structure['id'];
+            $this->_name=$structure['name'];
+        }
     }
 
+    public static function init() {
+        if(!is_object(self::$_manager)) self::$_manager = new Pdo_Structure();
+    }
+    
     public function getId() {
-        return $this->id;
+        return $this->_id;
     }
 
     public function setId($id) {
-        $this->id = $id;
+        $this->_id = $id;
     }
 
     public function getName() {
-        return $this->name;
+        return $this->_name;
     }
 
     public function setName($name) {
-        $this->name = $name;
+        $this->_name = $name;
     }
 
 }

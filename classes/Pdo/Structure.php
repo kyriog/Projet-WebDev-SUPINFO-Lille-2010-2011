@@ -21,5 +21,12 @@ class Pdo_Structure extends Pdo_Manager {
         $query->bindValue(':id', $id);
         $query->execute();
     }
+    
+    public function getStructure($id) {
+        $query = $this->pdo->prepare('SELECT * FROM structures WHERE id = :id');
+        $query->bindValue(':id', $id);
+        $query->execute();
+        return $query->fetch(PDO::FETCH_ASSOC);
+    }
 }
 ?>
