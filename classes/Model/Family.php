@@ -5,7 +5,7 @@ class Model_Family {
     private static $_manager;
     
     function __construct($id = null) {
-        self::_init();
+        self::init();
         if(is_null($id)) {
             $this->_id = null;
             $this->_name = null;
@@ -19,7 +19,7 @@ class Model_Family {
         }
     }
 
-    private static function _init() {
+    private static function init() {
         if(!is_object(self::$_manager)) self::$_manager = new Pdo_Family();
     }
     
@@ -48,7 +48,7 @@ class Model_Family {
     }
 
     public static function getAllFamilies() {
-        self::_init();
+        self::init();
         return self::$_manager->getAllFamilies();
     }
     
