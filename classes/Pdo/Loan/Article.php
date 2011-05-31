@@ -27,5 +27,11 @@ class Pdo_Loan_Article extends Pdo_Manager {
         $query->execute();
     }
         
+    public function getLoanArticle($id) {
+        $query = $this->pdo->prepare("SELECT * FROM loans_articles WHERE id = :id");
+        $query->bindValue(':id', $id);
+        $query->execute();
+        return $query->fetch(PDO::FETCH_ASSOC);
+    }
 }
 ?>
