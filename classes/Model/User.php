@@ -50,6 +50,13 @@ class Model_User {
     public function login($name, $password) {
         return self::$_manager->login($name, $password);
     }
+    
+    public function save() {
+        if(is_null($this->_id))
+            $this->_id = self::$_manager->add_user($this);
+        else
+            self::$_manager->edit_user($this);
+    }
 }
 
 ?>
