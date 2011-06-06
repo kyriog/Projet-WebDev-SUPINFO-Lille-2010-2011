@@ -48,7 +48,7 @@ class Model_Dynamic_Field {
     
     public function save() {
         if(is_null($this->_id))
-            self::$_manager->add_field($this);
+            $this->_id = self::$_manager->add_field($this);
         else 
             self::$_manager->edit_field($this);
     }
