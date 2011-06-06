@@ -5,7 +5,7 @@ class Model_Dynamic_Field {
     private static $_manager;
     
     function __construct($id = null) {
-        self::init();
+        self::_init();
         if(is_null($id))
         {
             $this->_id = null;
@@ -20,7 +20,7 @@ class Model_Dynamic_Field {
         }
     }
     
-    public static function init() {
+    private static function _init() {
         if(!is_object(self::$_manager)) self::$_manager = new Pdo_Dynamic_Field();
     }
     
@@ -47,7 +47,7 @@ class Model_Dynamic_Field {
     }
 
     public static function getFieldsByFamilyId($family) {
-        self::init();
+        self::_init();
         $family = (is_object($family)) ? $family->getId() : $family;
         return self::$_manager->getFieldsByFamilyId($family);
     }
