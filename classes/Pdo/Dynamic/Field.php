@@ -8,6 +8,20 @@ class Pdo_Dynamic_Field extends Pdo_Manager {
         return $this->pdo->lastInsertId();
     }
     
+    public function edit_field($field) {
+        $query = $this->pdo->prepare("UPDATE dynamic_fields SET id_family = :id_family, name = :name WHERE id = :id");
+        $query->bindValue(":id", $field->getId());
+        $query->bindValue(":id_family", $field->getFamily());
+        $query->bindValue(":name", $field->getName());
+        $query->execute();
+    }
+    
+    public function delete_field($field) {
+        $query = $this->pdo->prepare("DELETE FROM dynamic_fields WHERE id = :id");
+        $query->bindValue(":id", $field->getId());
+        $query->execute();
+    }
+    
     public function getDynamicField($id) {
         $query = $this->pdo->prepare("SELECT * FROM dynamic_fields WHERE id = :id");
         $query->bindValue(":id", $id);
