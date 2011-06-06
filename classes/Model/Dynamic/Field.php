@@ -28,10 +28,6 @@ class Model_Dynamic_Field {
         return $this->_id;
     }
 
-    public function setId($id) {
-        $this->_id = $id;
-    }
-
     public function getFamily() {
         return $this->_family;
     }
