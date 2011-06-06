@@ -32,12 +32,14 @@ class Model_Dynamic_Field {
         $this->_id = $id;
     }
 
-    public function getId_family() {
+    public function getFamily() {
         return $this->_id_family;
     }
 
-    public function setId_family($id_family) {
-        $this->_id_family = $id_family;
+    public function setFamily($family) {
+        if(is_object($family))
+            $family = $family->getId();
+        $this->_id_family = $family;
     }
 
     public function getName() {
