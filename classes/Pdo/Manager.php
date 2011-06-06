@@ -9,5 +9,7 @@ abstract class Pdo_Manager {
     public function __construct() {
         $this->pdo = new PDO(self::DSN, self::USER, self::PASSWORD);
     }
+    
+    //TODO : Améliorer la classe Pdo_Manager pour éviter qu'une nouvelle connexion à la BDD soit créée à chaque instanciation.
 }
 ?>
