@@ -2,6 +2,7 @@
 
 class Model_Family {
     private $_id, $_name, $_parentfamily;
+    private $_dynamic_fields = NULL;
     private static $_manager;
     
     function __construct($id = null) {
@@ -50,6 +51,19 @@ class Model_Family {
     public static function getAllFamilies() {
         self::init();
         return self::$_manager->getAllFamilies();
+    }
+
+    public function getDynamicFields() {
+        if(is_null($this->_dynamic_fields)) {
+            if(is_null($this->_id))
+                return array();
+            $fields = self::$_manager->getDynamicFieldsIds($this->_id);
+            $this->_dynamic_fields = array();
+            foreach($fields as $field) {
+                $this->_dynamic_fields[] = new Model_Dynamic_Field($field);
+            }
+        }
+        return $this->_dynamic_fields;
     }
     
     public function save() {

@@ -52,5 +52,16 @@ class Pdo_Family extends Pdo_Manager {
         $value = $query->fetch(PDO::FETCH_ASSOC);
         return $value['name'];
     }
+    
+    public function getDynamicFieldsIds($family_id) {
+        $query = $this->pdo->prepare("SELECT id FROM dynamic_fields WHERE id_family = :id_family");
+        $query->bindValue(":id_family", $family_id);
+        $query->execute();
+        $dynamic_fields = array();
+        while($fetch = $query->fetch(PDO::FETCH_NUM)) {
+            $dynamic_fields[] = $fetch[0];
+        }
+        return $dynamic_fields;
+    }
 }
 ?>
