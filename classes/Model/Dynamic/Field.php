@@ -48,6 +48,11 @@ class Model_Dynamic_Field {
         $this->_name = $name;
     }
 
+    public static function getFieldsByFamilyId($family) {
+        self::init();
+        $family = (is_object($family)) ? $family->getId() : $family;
+        return self::$_manager->getFieldsByFamilyId($family);
+    }
 }
 
 ?>

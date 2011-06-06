@@ -13,5 +13,16 @@ class Pdo_Dynamic_Field extends Pdo_Manager {
         $query->execute();
         return $query->fetch(PDO::FETCH_ASSOC);
     }
+    
+    public function getFieldsByFamilyId($id) {
+        $query = $this->pdo->prepare("SELECT id FROM dynamic_fields WHERE id_family=:id ORDER BY id");
+        $query->bindValue(":id", $id);
+        $query->execute();
+        $fields = array();
+        while($fetch = $query->fetch(PDO::FETCH_NUM)) {
+            $fields[] = new Model_Dynamic_Field($fetch[0]);
+        }
+        return $fields;
+    }
 }
 ?>
