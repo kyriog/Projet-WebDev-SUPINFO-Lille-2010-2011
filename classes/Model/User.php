@@ -5,7 +5,7 @@ class Model_User {
     private static $_manager;
     
     function __construct($id = null) {
-        self::_init();
+        self::init();
         if(is_null($id)) {
             $this->_id = null;
             $this->_name=null;
@@ -19,7 +19,7 @@ class Model_User {
         }
     }
 
-    private static function _init() {
+    private static function init() {
         if(!is_object(self::$_manager)) self::$_manager = new Pdo_User();
     }
     
@@ -49,6 +49,13 @@ class Model_User {
 
     public function login($name, $password) {
         return self::$_manager->login($name, $password);
+    }
+    
+    public function save() {
+        if(is_null($this->_id))
+            $this->_id = self::$_manager->add_user($this);
+        else
+            self::$_manager->edit_user($this);
     }
 }
 

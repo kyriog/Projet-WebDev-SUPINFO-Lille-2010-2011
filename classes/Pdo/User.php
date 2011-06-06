@@ -6,7 +6,7 @@ class Pdo_User extends Pdo_Manager {
         $query = $this->pdo->prepare('INSERT INTO users(name, password) VALUES (:name, :password)');
         $query->bindValue(':id', $user->getId());
         $query->bindValue(':name', $user->getName());
-        $query->bindValue(':password', $user->getPassword());
+        $query->bindValue(':password', md5($user->getPassword()));
         $query->execute();
         return $this->pdo->lastInsertId();
     }
