@@ -45,6 +45,18 @@ class Model_Dynamic_Field {
     public function setName($name) {
         $this->_name = $name;
     }
+    
+    public function save() {
+        if(is_null($this->_id))
+            self::$_manager->add_field($this);
+        else 
+            self::$_manager->edit_field($this);
+    }
+    
+    public function remove() {
+        if(!is_null($this->_id)) 
+            self::$_manager->remove_field($this);
+    }
 
     public static function getFieldsByFamilyId($family) {
         self::_init();
