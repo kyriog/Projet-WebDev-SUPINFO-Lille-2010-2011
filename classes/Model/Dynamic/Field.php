@@ -55,7 +55,7 @@ class Model_Dynamic_Field {
     
     public function remove() {
         if(!is_null($this->_id)) 
-            self::$_manager->remove_field($this);
+            self::$_manager->delete_field($this);
     }
 
     public static function getFieldsByFamilyId($family) {
