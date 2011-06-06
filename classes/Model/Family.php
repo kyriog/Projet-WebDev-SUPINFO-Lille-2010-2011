@@ -52,6 +52,13 @@ class Model_Family {
         return self::$_manager->getAllFamilies();
     }
     
+    public function save() {
+        if(is_null($this->_id))
+            $this->_id = self::$_manager->add_family($this);
+        else
+            self::$_manager->edit_family($this);
+    }
+    
 }
 
 ?>
