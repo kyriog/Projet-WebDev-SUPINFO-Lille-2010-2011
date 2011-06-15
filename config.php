@@ -7,6 +7,6 @@ define('MYSQL_DEFAULT_PASSWORD' , '');
 define('MYSQL_DEFAULT_DB'       , 'webdev');
 
 // Définition du répertoire de l'installation
-define('BASE_PATH'              , '/opt/lampp/htdocs/webdev2');
+define('BASE_PATH'              , '/opt/lampp/htdocs/Web_Dev');
 
 ?>

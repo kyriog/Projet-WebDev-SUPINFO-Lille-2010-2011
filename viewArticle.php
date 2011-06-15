@@ -2,8 +2,11 @@
 session_start();
 require_once('config.php');
 require_once('autoload.php');
+<<<<<<< HEAD
 
 //Si on veut accèder aux articles d'une famille.
+=======
+>>>>>>> parent of 954e868... Ajout de la possiblité d'accèder au détail d'un article via son ID
 if(isset($_GET['family'])) {
     ?>
 <!DOCTYPE html>
@@ -70,6 +73,7 @@ if(isset($_GET['family'])) {
     </body>
 </html>
 <?php 
+<<<<<<< HEAD
 } 
 
 //Si on a décidé d'accéder au détail d'un article, comme le demande l'énoncé ...
@@ -104,6 +108,7 @@ elseif(isset($_GET['id'])) {
         </table>
     </body>
 </html>    
+=======
+>>>>>>> parent of 954e868... Ajout de la possiblité d'accèder au détail d'un article via son ID
 
-<?php }
-?>
+} ?>
