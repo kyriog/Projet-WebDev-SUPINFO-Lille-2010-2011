@@ -2,7 +2,7 @@
 
 class Model_Article {
     private $_id, $_barcode, $_family, $_quantity, $_description, $_state, $_place;
-    private abstract $_manager;
+    private static $_manager;
 
 
     function __construct($id = null) {
@@ -17,7 +17,7 @@ class Model_Article {
             $this->_place=null;
         }
         else {
-            $article = $this->_manager->getArticle($id);
+            $article = self::$_manager->getArticle($id);
             $this->_id=$article['id'];
             $this->_barcode=$article['barcode'];
             $this->_family=$article['family'];
@@ -32,63 +32,66 @@ class Model_Article {
         if(!is_object(self::$_manager)) self::$_manager = new Pdo_Article();
     }
     
-    public function get_id() {
+    public function getId() {
         return $this->_id;
     }
 
-    public function set_id($id) {
+    public function setId($id) {
         $this->_id = $id;
     }
 
-    public function get_barcode() {
+    public function getBarcode() {
         return $this->_barcode;
     }
 
-    public function set_barcode($barcode) {
+    public function setBarcode($barcode) {
         $this->_barcode = $barcode;
     }
 
-    public function get_family() {
+    public function getFamily() {
         return $this->_family;
     }
 
-    public function set_family($family) {
+    public function setFamily($family) {
         $this->_family = $family;
     }
 
-    public function get_quantity() {
+    public function getQuantity() {
         return $this->_quantity;
     }
 
-    public function set_quantity($quantity) {
+    public function setQuantity($quantity) {
         $this->_quantity = $quantity;
     }
 
-    public function get_description() {
+    public function getDescription() {
         return $this->_description;
     }
 
-    public function set_description($description) {
+    public function setDescription($description) {
         $this->_description = $description;
     }
 
-    public function get_state() {
+    public function getState() {
         return $this->_state;
     }
 
-    public function set_state($state) {
+    public function setState($state) {
         $this->_state = $state;
     }
 
-    public function get_place() {
+    public function getPlace() {
         return $this->_place;
     }
 
-    public function set_place($place) {
+    public function setPlace($place) {
         $this->_place = $place;
     }
-
-
+    
+    public static function getArticlesOfFamily($id_family) {
+        self::init();
+        return self::$_manager->getArticlesByFamily($id_family);
+    }
 }
 
 ?>
