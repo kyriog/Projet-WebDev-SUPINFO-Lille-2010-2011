@@ -31,7 +31,7 @@ class Pdo_Family extends Pdo_Manager {
         $query->execute();
         $array = array();
         while($value = $query->fetch(PDO::FETCH_ASSOC)) {
-            $family = new Model_Family($value['id'], $value['name'], $value['parentfamily']);
+            $family = new Model_Family($value['id']);
             array_push($array, $family);
         }
         return $array;
