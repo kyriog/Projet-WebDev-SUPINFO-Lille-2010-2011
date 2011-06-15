@@ -8,8 +8,8 @@ if(isset($_POST['username']) && isset($_POST['password'])) {
     //Ici le "user =" servira si on a besoin de récupérer les données du client, sinon on peut supprimer cette partie.
     if($user = $user->login($_POST['username'], $_POST['password']))
     {
-        //Mettre ici la déclaration des variable de session.
-        echo "It Works !";
+        $_SESSION['id'] = $user->getId();
+        $_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
     }
 }
 
