@@ -28,7 +28,7 @@ require_once('autoload.php');
             foreach($families as $value) { 
                 $parent_family = new Model_Family($value->getParentfamily());
             ?>
-            <tr><td><?php echo $value->getName(); ?></td><td><?php echo $parent_family->getName(); ?></td><td><a href="editFamily.php?id=<?php echo $value->getId();?>">Editer</a></td></tr>
+            <tr><td><a href="viewArticle.php?family=<?php echo $value->getId()?>"><?php echo $value->getName(); ?></a></td><td><?php echo $parent_family->getName(); ?></td><td><a href="editFamily.php?id=<?php echo $value->getId();?>">Editer</a></td></tr>
             <?php } ?>
         </table>    
         <p><a href="editFamily.php">Add a family</a></p>
