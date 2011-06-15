@@ -19,5 +19,11 @@ class Pdo_Article extends Pdo_Manager {
         }
         return $array;
     }
+    
+    public function deleteArticle($id) {
+        $query = $this->pdo->prepare("DELETE FROM articles WHERE id = :id");
+        $query->bindValue(":id", $id);
+        return $query->execute();
+    }
 }
 ?>

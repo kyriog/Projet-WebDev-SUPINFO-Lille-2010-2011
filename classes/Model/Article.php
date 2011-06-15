@@ -92,6 +92,10 @@ class Model_Article {
         self::init();
         return self::$_manager->getArticlesByFamily($id_family);
     }
+    
+    public function deleteArticle() {
+        return self::$_manager->deleteArticle($this->_id);
+    }
 }
 
 ?>
