@@ -26,7 +26,8 @@ if(isset($_POST['send'])) {
             $new_field->save();
         }
     }
-    header('Location: editFamily.php?id='.$family->getId());
+    //header('Location: editFamily.php?id='.$family->getId());
+    header('Location: viewFamily.php');
 }
 else {
     $id = (isset($_GET['id'])) ? $_GET['id'] : NULL;
