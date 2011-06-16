@@ -12,43 +12,43 @@ if(isset($_GET['family'])) {
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
         <script type="text/javascript">
-                //Fonction pour initialiser le xhr, suivant si l'utilisateur utilisateur utilise ou non
-                //un vrai navigateur (donc pas Internet Explorer ...)
-                function getXMLHttpRequest() {
-                        var xhr = null;
+            //Fonction pour initialiser le xhr, suivant si l'utilisateur utilisateur utilise ou non
+            //un vrai navigateur (donc pas Internet Explorer ...)
+            function getXMLHttpRequest() {
+                    var xhr = null;
 
-                        if (window.XMLHttpRequest || window.ActiveXObject) {
-                                if (window.ActiveXObject) {
-                                        xhr = new ActiveXObject("Msxml2.XMLHTTP");
-                                } else {
-                                        xhr = new XMLHttpRequest();
-                                }
-                        } else {
-                                alert("Impossible to use AJAX on your web browser !");
-                        }
-
-                        return xhr;
-                }
-
-                function deleteArticle(idfamily, idarticle) {
-                    var xhr = getXMLHttpRequest();
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState == XMLHttpRequest.DONE) {
-                            if(xhr.status == 200) {
-                                //L'Ã©lÃ©ment Ã  recharger, avec les donnÃ©es qu'il va recevoir.
-                                document.getElementById("articles").innerHTML = xhr.responseText;
+                    if (window.XMLHttpRequest || window.ActiveXObject) {
+                            if (window.ActiveXObject) {
+                                    xhr = new ActiveXObject("Msxml2.XMLHTTP");
+                            } else {
+                                    xhr = new XMLHttpRequest();
                             }
+                    } else {
+                            alert("Impossible to use AJAX on your web browser !");
+                    }
+
+                    return xhr;
+            }
+
+            function deleteArticle(idfamily, idarticle) {
+                var xhr = getXMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == XMLHttpRequest.DONE) {
+                        if(xhr.status == 200) {
+                            //L'élément à recharger, avec les données qu'il va recevoir.
+                            document.getElementById("articles").innerHTML = xhr.responseText;
                         }
                     }
-                    //Les argument Ã  passer, en GET et POST.
-                    xhr.open("POST", "articlesTable.php");
-                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    xhr.send("family=" + idfamily + "&article=" + idarticle);
-
-                    //Permet d'Ã©viter le chargement du lien contenu dans le <a>.
-                    return false;
                 }
-            </script>
+                //Les argument à passer, en POST.
+                xhr.open("POST", "articlesTable.php");
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.send("family=" + idfamily + "&article=" + idarticle);
+
+                //Permet d'éviter le chargement du lien contenu dans le <a>.
+                return false;
+            }
+        </script>
     </head>
     <body>
         <style type="text/css">
@@ -105,4 +105,5 @@ elseif(isset($_GET['id'])) {
     </body>
 </html>    
 <?php
-} ?>
+} 
+?>
