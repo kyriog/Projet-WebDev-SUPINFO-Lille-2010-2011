@@ -62,6 +62,13 @@ class Model_Dynamic_Value {
         self::init();
         return self::$_manager->getValue($id_field, $id_article);
     }
+    
+    public function save() {
+        if(is_null($this->_id))
+            $this->_id = self::$_manager->add_value($this);
+        else
+            self::$_manager->edit_value($this);
+    }
 }
 
 ?>
