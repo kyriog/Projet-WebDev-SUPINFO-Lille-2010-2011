@@ -29,5 +29,18 @@ class Pdo_Place extends Pdo_Manager {
         $value = $query->fetch(PDO::FETCH_ASSOC);
         return $value;
     }
+    
+    public function getAllPlaces() {
+        $query = $this->pdo->prepare("SELECT * FROM places");
+        $query->execute();
+        $array = array();
+        while($value = $query->fetch(PDO::FETCH_ASSOC))
+        {
+            $place = new Model_Place($value['id']);
+            array_push($array, $place);
+        }
+        return $array;
+    }
+
 }
 ?>

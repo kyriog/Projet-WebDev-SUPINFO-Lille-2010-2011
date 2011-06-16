@@ -37,6 +37,11 @@ class Model_Place {
     public function setName($name) {
         $this->_name = $name;
     }
+    
+    public static function getAllPlaces() {
+        self::init();
+        return self::$_manager->getAllPlaces();
+    }
 
 }
 
