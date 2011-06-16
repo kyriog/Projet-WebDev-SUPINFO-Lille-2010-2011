@@ -96,6 +96,13 @@ class Model_Article {
     public function deleteArticle() {
         return self::$_manager->deleteArticle($this->_id);
     }
+    
+    public function save() {
+        if(is_null($this->_id))
+            $this->_id = self::$_manager->add_article($this);
+        else
+            self::$_manager->edit_article($this);
+    }
 }
 
 ?>
