@@ -107,14 +107,12 @@ else {
     $article->setState($_POST['state']);
     $article->save();
     if(isset($_POST['dynamicvalue'])) {
-        $dynamic_values = $_POST['dynamicvalue'];
-        foreach ($dynamic_values as $index => $dynamic_value) {
+        $dynamic_values_strings = $_POST['dynamicvalue'];
+        foreach ($dynamic_values_strings as $index => $dynamic_value_string) {
             $dynamic_value = new Model_Dynamic_Value();
             $dynamic_value->setId_field($index);
-            $dynamic_value->setValue($dynamic_value);
+            $dynamic_value->setValue($dynamic_value_string);
             $dynamic_value->setId_article($article->getId());
-            /*var_dump($dynamic_value);
-            die;*/
             $dynamic_value->save();
         }
     }
