@@ -37,10 +37,15 @@ $dynamic_fields = $family->getDynamicFields();
 
     <?php 
     //On ajoute, toujours s'il y en a, les valeurs des champs dynamiques
-    foreach ($dynamic_fields as $dynamic_field) { ?>
-    <td><?php echo Model_Dynamic_Value::getValueByIds($dynamic_field->getId(), $article->getId());?></td>
+    foreach ($dynamic_fields as $dynamic_field) { 
+        $dynamic_value = new Model_Dynamic_Value;
+        $dynamic_value->setId_field($dynamic_field->getId());
+        $dynamic_value->setId_article($article->getId());
+        ?>
+    <td><?php echo $dynamic_value->getValue();?></td>
     <?php }
     ?>
+    <td><a href="editArticle.php?id=<?php echo $article->getId();?>">Editer</a></td>
     <td><a href="#" onclick="return deleteArticle(<?php echo $family->getId() ?>, <?php echo $article->getId();?>)">Supprimer</a></td>
 </tr>
 <?php 
