@@ -16,6 +16,15 @@ class Pdo_Dynamic_Value extends Pdo_Manager {
         return $value['value'];
     }
     
+    public function getId($id_field, $id_article) {
+        $query = $this->pdo->prepare("SELECT id FROM dynamic_values WHERE id_field = :id_field AND id_article = :id_article");
+        $query->bindValue(":id_field", $id_field);
+        $query->bindValue(":id_article", $id_article);
+        $query->execute();
+        $value = $query->fetch(pdo::FETCH_ASSOC);
+        return $value['id'];
+    }
+    
     public function add_value($value){
         $query = $this->pdo->prepare('INSERT INTO dynamic_values(id_field, id_article, value) VALUES (:id_field, :id_article, :value)');
         $query->bindValue(':id_field', $value->getId_field());
