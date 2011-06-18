@@ -6,8 +6,8 @@ class Pdo_Loan_Article extends Pdo_Manager {
         $query->bindValue(':loan', $loan_article->getLoan());
         $query->bindValue(':article', $loan_article->getArticle());
         $query->bindValue(':quantity', $loan_article->getQuantity());
-        $query->bindValue(':begindate', $loan_article->getBegindate());
-        $query->bindValue(':enddate', $loan_article->getEnddate());
+        $query->bindValue(':begindate', Helper_Date::timestampToMysql($loan_article->getBegindate()));
+        $query->bindValue(':enddate', Helper_Date::timestampToMysql($loan_article->getEnddate()));
         $query->execute();
         return $this->pdo->lastInsertId();
     }
@@ -18,8 +18,8 @@ class Pdo_Loan_Article extends Pdo_Manager {
         $query->bindValue(':loan', $loan_article->getLoan());
         $query->bindValue(':article', $loan_article->getArticle());
         $query->bindValue(':quantity', $loan_article->getQuantity());
-        $query->bindValue(':begindate', $loan_article->getBegindate());
-        $query->bindValue(':enddate', $loan_article->getEnddate());
+        $query->bindValue(':begindate', Helper_Date::timestampToMysql($loan_article->getBegindate()));
+        $query->bindValue(':enddate', Helper_Date::timestampToMysql($loan_article->getEnddate()));
         $query->execute();
     }
 
