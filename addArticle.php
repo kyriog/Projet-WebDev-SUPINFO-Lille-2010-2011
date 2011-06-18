@@ -11,8 +11,7 @@ $families = Model_Family::getAllFamilies();
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
         <script type="text/javascript">
-            //Fonction pour initialiser le xhr, suivant si l'utilisateur utilisateur utilise ou non
-            //un vrai navigateur (donc pas Internet Explorer ...)
+            //Fonction pour initialiser le xhr, suivant si le navigateur, internet explorer, ou les autres.
             function getXMLHttpRequest() {
                     var xhr = null;
 
@@ -96,7 +95,9 @@ $families = Model_Family::getAllFamilies();
         </form>
     </body>
 </html>
-<?php } 
+<?php }
+
+//Si le formulaire a bien été rempli, on ajoute les données à la bdd.
 else { 
     $article = new Model_Article();
     $article->setBarcode($_POST['barCode']);
