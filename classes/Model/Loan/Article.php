@@ -33,10 +33,6 @@ class Model_Loan_Article {
         return $this->_id;
     }
 
-    public function setId($id) {
-        $this->_id = $id;
-    }
-
     public function getLoan() {
         return $this->_loan;
     }
