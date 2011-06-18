@@ -1,7 +1,12 @@
 <?php 
 session_start();
-if($_SESSION['ip'] == $_SERVER['REMOTE_ADDR'])
-{
+if($_SESSION['ip'] == $_SERVER['REMOTE_ADDR']):
+    if(isset($_POST['submit'])) {
+        $user = new Model_User();
+        $user->setName($_POST['name']);
+        $user->password($_POST['password']);
+        $user->save();
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,12 +22,4 @@ if($_SESSION['ip'] == $_SERVER['REMOTE_ADDR'])
         </form>
     </body>
 </html>
-<?php
-    if(isset($_POST['submit'])) {
-        $user = new Model_User();
-        $user->setName($_POST['name']);
-        $user->password($_POST['password']);
-        $user->save();
-    }
-} 
-?>
+<?php endif ?>
