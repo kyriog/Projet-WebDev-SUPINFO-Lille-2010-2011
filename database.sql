@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Sam 18 Juin 2011 à 14:40
+-- Généré le : Sam 18 Juin 2011 à 22:50
 -- Version du serveur: 5.5.8
 -- Version de PHP: 5.3.5
 
@@ -126,6 +126,7 @@ CREATE TABLE IF NOT EXISTS `loans_articles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `loan` int(10) unsigned NOT NULL,
   `article` int(10) unsigned NOT NULL,
+  `quantity` int(10) unsigned NOT NULL,
   `begindate` date DEFAULT NULL,
   `enddate` date DEFAULT NULL,
   PRIMARY KEY (`id`),
