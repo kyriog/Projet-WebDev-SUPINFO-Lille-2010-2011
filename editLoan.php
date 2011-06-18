@@ -62,12 +62,6 @@ require_once('autoload.php');
                         $($(".article_date_end")[id]).attr("disabled","disabled");
                     }
                 });
-                $(".article_delete").live('click',function(){
-                    var id = $(".article_delete").index(this);
-                    $($(".table_line")[id]).hide("200",function() {
-                        $($(".table_line")[id]).remove();
-                    });
-                });
             })
         </script>
     </head>
@@ -75,6 +69,16 @@ require_once('autoload.php');
 
 <?php else: ?>
     <body>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(".article_delete").live('click',function(){
+                        var id = $(".article_delete").index(this);
+                        $($(".table_line")[id]).hide("200",function() {
+                            $($(".table_line")[id]).remove();
+                        });
+                });
+            })
+        </script>
         <form method="POST" action="editLoan.php">
             <table>
                 <tr><td>Référence client</td><td><input type="text" name="customer" size="6" id="customer_id" /> - <span id="customer_name">Aucune référence client entrée</span></td></tr>
