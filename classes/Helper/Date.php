@@ -13,14 +13,22 @@ class Helper_Date {
     }
     
     public static function timestampToMysql($timestamp) {
-        $mysql = date('Y-m-d', $timestamp);
-        return $mysql;
+        if(is_int($timestamp)) {
+            $mysql = date('Y-m-d', $timestamp);
+            return $mysql;
+        } else {
+            return null;
+        }
     }
     
     public static function mysqlToTimestamp($mysql) {
-        $mysql = explode('-',$mysql);
-        $timestamp = mktime(0, 0, 0, $mysql[1], $mysql[0], $mysql[2]);
-        return $timestamp;
+        if(is_null($mysql)) {
+            return null;
+        } else {
+            $mysql = explode('-',$mysql);
+            $timestamp = mktime(0, 0, 0, $mysql[1], $mysql[0], $mysql[2]);
+            return $timestamp;
+        }
     }
 }
 
