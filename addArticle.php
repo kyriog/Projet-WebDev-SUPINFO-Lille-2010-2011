@@ -10,47 +10,26 @@ $families = Model_Family::getAllFamilies();
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
+        <script type="text/javascript" src="jquery-1.6.1.min.js"></script>
         <script type="text/javascript">
-            //Fonction pour initialiser le xhr, suivant si le navigateur, internet explorer, ou les autres.
-            function getXMLHttpRequest() {
-                    var xhr = null;
-
-                    if (window.XMLHttpRequest || window.ActiveXObject) {
-                            if (window.ActiveXObject) {
-                                    xhr = new ActiveXObject("Msxml2.XMLHTTP");
-                            } else {
-                                    xhr = new XMLHttpRequest();
-                            }
-                    } else {
-                            alert("Impossible to use AJAX on your web browser !");
-                    }
-
-                    return xhr;
-            }
-
-            function loaddetails() {
-                var xhr = getXMLHttpRequest();
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState == XMLHttpRequest.DONE) {
-                        if(xhr.status == 200) {
-                            //L'élément à recharger, avec les données qu'il va recevoir.
-                            document.getElementById("addArticle").innerHTML = xhr.responseText;
-                        }
-                    }
-                }
-                //Les argument à passer, en POST.
-                xhr.open("POST", "addArticlesDetails.php");
-                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                choice = document.getElementById("family");
-                idfamily = choice.options[choice.selectedIndex].value;
-                xhr.send("family=" + idfamily);
-            }
+            $(document).ready(function() {
+                $("#family").change(function() {
+                   $.ajax({
+                       type: "POST",
+                       url: "addArticlesDetails.php",
+                       data: "family="+$("#family").val(),
+                       success: function(msg) {
+                           $("#addArticle").html(msg); 
+                       }
+                   });
+                });
+            });
         </script>
     </head>
     <body>
         <form method="post" action="addArticle.php">
             <label for="family">Family : </label>
-            <select name="family" id="family" onchange='loaddetails()'>
+            <select name="family" id="family">
                 <option value="-1">None</option>
                 <?php 
                 foreach($families as $family) { ?>
