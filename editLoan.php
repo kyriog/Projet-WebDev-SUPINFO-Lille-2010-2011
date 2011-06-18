@@ -27,8 +27,9 @@ require_once('autoload.php');
                 });
                 $("#lastline").live('focus',function() {
                     $(this).removeAttr("id");
+                    $(this).append("<td><span class=\"article_delete\" style=\"cursor: pointer\"><img src=\"media/delete.png\" alt=\"Supprimer\" /></span></td>");
                     $("#table_body").append("\n\
-                        <tr id=\"lastline\">\n\
+                        <tr id=\"lastline\" class=\"table_line\">\n\
                             <td><input type=\"text\" name=\"article_id[]\" size=\"5\" class=\"article_id\" /></td>\n\
                             <td><input type=\"text\" class=\"article_name\" size=\"50\" disabled=\"disabled\" /></td>\n\
                             <td><input type=\"text\" name=\"article_qty[]\" size=\"2\" /></td>\n\
@@ -60,7 +61,13 @@ require_once('autoload.php');
                         $($(".article_date_begin")[id]).attr("disabled","disabled");
                         $($(".article_date_end")[id]).attr("disabled","disabled");
                     }
-                })
+                });
+                $(".article_delete").live('click',function(){
+                    var id = $(".article_delete").index(this);
+                    $($(".table_line")[id]).hide("200",function() {
+                        $($(".table_line")[id]).remove();
+                    });
+                });
             })
         </script>
     </head>
@@ -83,7 +90,7 @@ require_once('autoload.php');
                                 <td>Période (optionnel)</td>
                             </thead>
                             <tbody id="table_body">
-                                <tr id="lastline">
+                                <tr id="lastline" class="table_line">
                                     <td><input type="text" name="article_id[]" size="5" class="article_id" /></td>
                                     <td><input type="text" class="article_name" size="50" disabled="disabled" /></td>
                                     <td><input type="text" name="article_qty[]" size="2" /></td>
