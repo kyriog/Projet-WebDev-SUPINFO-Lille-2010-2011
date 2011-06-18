@@ -67,7 +67,28 @@ require_once('autoload.php');
     </head>
 <?php if(isset($_GET['id'])): ?>
 
-<?php else: ?>
+<?php else:
+    if(isset($_POST['send'])):
+        $loan = new Model_Loan();
+        $loan->setCustomer($_POST['customer']);
+        $loan->setReason($_POST['reason']);
+        $loan->setBegindate(Helper_Date::humanToTimestamp($_POST['date_begin']));
+        $loan->setEnddate(Helper_Date::humanToTimestamp($_POST['date_end']));
+        $loan->save();
+        foreach($_POST['article_id'] as $entry_id=>$article_id) {
+            $article = new Model_Loan_Article();
+            $article->setLoan($loan->getId());
+            $article->setArticle($article_id);
+            $qty = ($_POST['article_qty'][$entry_id] > 0) ? $_POST['article_qty'][$entry_id] : 1;
+            $article->setQuantity($qty);
+            if(isset($_POST['article_date'][$entry_id])) {
+                $article->setBegindate(Helper_Date::humanToTimestamp($_POST['article_date_begin'][$entry_id]));
+                $article->setEnddate(Helper_Date::humanToTimestamp($_POST['article_date_end'][$entry_id]));
+            }
+            $article->save();
+        }
+    else:
+    ?>
     <body>
         <script type="text/javascript">
             $(document).ready(function() {
@@ -104,9 +125,10 @@ require_once('autoload.php');
                         </table>
                     </td>
                 </tr>
-                <tr><td><input type="submit" value="Ajouter" /></td></tr>
+                <tr><td><input type="submit" name="send" value="Ajouter" /></td></tr>
             </table>
         </form>
     </body>
-<?php endif; ?>
+<?php endif;
+endif; ?>
 </html>
