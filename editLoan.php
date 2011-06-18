@@ -32,7 +32,7 @@ require_once('autoload.php');
                         <tr id=\"lastline\" class=\"table_line\">\n\
                             <td><input type=\"text\" name=\"article_id[]\" size=\"5\" class=\"article_id\" /></td>\n\
                             <td><input type=\"text\" class=\"article_name\" size=\"50\" disabled=\"disabled\" /></td>\n\
-                            <td><input type=\"text\" name=\"article_qty[]\" size=\"2\" /></td>\n\
+                            <td><input type=\"text\" name=\"article_qty[]\" size=\"2\" value=\"1\" /></td>\n\
                             <td><input type=\"checkbox\" name=\"article_date[]\" class=\"article_date\" /><input type=\"text\" name=\"article_date_begin[]\" class=\"article_date_begin\" size=\"10\" disabled=\"disabled\" /> - <input type=\"text\" name=\"article_date_end[]\" class=\"article_date_end\" size=\"10\" disabled=\"disabled\" /></td>\n\
                         </tr>");
                 });
@@ -118,7 +118,7 @@ require_once('autoload.php');
                                 <tr id="lastline" class="table_line">
                                     <td><input type="text" name="article_id[]" size="5" class="article_id" /></td>
                                     <td><input type="text" class="article_name" size="50" disabled="disabled" /></td>
-                                    <td><input type="text" name="article_qty[]" size="2" /></td>
+                                    <td><input type="text" name="article_qty[]" size="2" value="1" /></td>
                                     <td><input type="checkbox" name="article_date[]" class="article_date" /><input type="text" name="article_date_begin[]" class="article_date_begin" size="10" disabled="disabled" /> - <input type="text" name="article_date_end[]" class="article_date_end" size="10" disabled="disabled" /></td>
                                 </tr>
                             </tbody>
