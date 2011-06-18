@@ -3,9 +3,12 @@ require_once('config.php');
 require_once('autoload.php');
 ?>
 <table>
-<?php 
+<?php
+//Pour l'AJAX, si on lui envois les argument family et article en POST alors c'est que l'on a cliqué sur le lien
+//supprimer d'un article.
 if(!isset($_POST['family']))
     $family = new Model_Family($_GET['family']);
+
 else {
     $family = new Model_Family($_POST['family']);
     $article = new Model_Article($_POST['article']);
@@ -27,9 +30,10 @@ $dynamic_fields = $family->getDynamicFields();
     //On ajoute les articles dans le tableau
     $articles = Model_Article::getArticlesOfFamily($family->getId());
     foreach($articles as $article) {
+        $place = new Model_Place($article->getPlace());
 ?>
 <tr>
-    <td><?php echo $article->getId(); ?></td><td><?php echo $article->getBarcode(); ?></td><td><?php echo $article->getQuantity(); ?></td><td><?php echo $article->getDescription(); ?></td><td><?php echo $article->getState(); ?></td><td><?php echo $article->getPlace(); ?></td>
+    <td><?php echo $article->getId(); ?></td><td><?php echo $article->getBarcode(); ?></td><td><?php echo $article->getQuantity(); ?></td><td><?php echo $article->getDescription(); ?></td><td><?php echo $article->getState(); ?></td><td><?php echo $place->getName(); ?></td>
 
     <?php 
     //On ajoute, toujours s'il y en a, les valeurs des champs dynamiques
