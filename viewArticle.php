@@ -74,7 +74,11 @@ if(isset($_GET['family'])) {
 
 //Si on a décidé d'accéder au détail d'un article, comme le demande l'énoncé ...
 elseif(isset($_GET['id'])) { 
-    $article = new Model_Article($_GET['id'])?>
+    $article = new Model_Article($_GET['id']);
+    $place = new Model_Place($article->getPlace());
+    $family = new Model_Family($article->getFamily());
+    $dynamic_fields = $family->getDynamicFields();
+                ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -97,9 +101,25 @@ elseif(isset($_GET['id'])) {
             <caption>Article : <?php echo $article->getId(); ?></caption>
             <tr>
                 <th>Numéro de référencement</th><th>Code bare</th><th>Quantité dispo</th><th>Description</th><th>Etat</th><th>Lieu de stockage</th>
+                <?php
+                //On ajoute s'il y en les titre des champs dynamiques
+                foreach ($dynamic_fields as $dynamic_field) { ?>
+                <th><?php echo $dynamic_field->getName();?></th>
+                <?php }
+                ?>
             <tr/>
             <tr>
-                <td><?php echo $article->getId();?></td><td><?php echo $article->getBarcode()?></td><td><?php echo $article->getQuantity()?></td><td><?php echo $article->getDescription()?></td><td><?php echo $article->getState()?></td><td><?php echo $article->getPlace()?></td>
+                <td><?php echo $article->getId();?></td><td><?php echo $article->getBarcode()?></td><td><?php echo $article->getQuantity()?></td><td><?php echo $article->getDescription()?></td><td><?php echo $article->getState()?></td><td><?php echo $place->getName();?></td>
+                <?php 
+                //On ajoute, toujours s'il y en a, les valeurs des champs dynamiques
+                foreach ($dynamic_fields as $dynamic_field) { 
+                    $dynamic_value = new Model_Dynamic_Value;
+                    $dynamic_value->setId_field($dynamic_field->getId());
+                    $dynamic_value->setId_article($article->getId());
+                    ?>
+                <td><?php echo $dynamic_value->getValue();?></td>
+                <?php }
+                ?>
             </tr>
         </table>
     </body>
