@@ -36,6 +36,11 @@ class Model_Structure {
     public function setName($name) {
         $this->_name = $name;
     }
+    
+    public static function getAllStructures(){
+        self::init();
+        return self::$_manager->getAllStructures();
+    }
 
 }
 

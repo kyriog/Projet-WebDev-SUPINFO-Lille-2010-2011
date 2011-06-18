@@ -28,5 +28,16 @@ class Pdo_Structure extends Pdo_Manager {
         $query->execute();
         return $query->fetch(PDO::FETCH_ASSOC);
     }
+    
+    public function getAllStructures() {
+        $query = $this->pdo->prepare('SELECT * FROM structures');
+        $query->execute();
+        $array = array();
+        while($value = $query->fetch(PDO::FETCH_ASSOC)) {
+            $structure = new Model_Structure($value['id']);
+            array_push($array, $structure);
+        }
+        return $array;
+    }
 }
 ?>
