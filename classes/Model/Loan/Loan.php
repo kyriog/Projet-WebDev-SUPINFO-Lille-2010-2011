@@ -68,7 +68,14 @@ class Model_Loan {
         $this->_reason = $reason;
     }
 
-
+    public function save() {
+        if(is_null($this->_id)) {
+            $this->_id = self::$_manager->add_loan($this);
+        }
+        else {
+            self::$_manager->edit_loan($this);
+        }
+    }
 }
 
 ?>
