@@ -73,6 +73,14 @@ class Model_Loan_Article {
         $this->_enddate = $enddate;
     }
 
+    public function save() {
+        if(is_null($this->_id)) {
+            $this->_id = self::$_manager->add_loan_article($this);
+        }
+        else {
+            self::$_manager->edit_loan_article($this);
+        }
+    }
 }
 
 ?>
