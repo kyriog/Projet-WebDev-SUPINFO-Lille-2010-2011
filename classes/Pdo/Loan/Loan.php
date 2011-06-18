@@ -2,7 +2,7 @@
 class Pdo_Loan extends Pdo_Manager {
     
     public function add_loan($loan){
-        $query = $this->pdo->prepare('INSERT INTO loans(customer, begindate, enddate, reason) VALUES (:customer, :begindate, :enddate, :resaon)');
+        $query = $this->pdo->prepare('INSERT INTO loans(customer, begindate, enddate, reason) VALUES (:customer, :begindate, :enddate, :reason)');
         $query->bindValue(':customer', $loan->getCustomer());
         $query->bindValue(':begindate', Helper_Date::timestampToMysql($loan->getBegindate()));
         $query->bindValue(':enddate', Helper_Date::timestampToMysql($loan->getEnddate()));
