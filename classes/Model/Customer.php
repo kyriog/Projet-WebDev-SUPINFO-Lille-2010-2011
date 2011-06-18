@@ -87,6 +87,12 @@ class Model_Customer {
         $this->_address = $address;
     }
 
+    public function save() {
+        if(is_null($this->_id))
+            $this->_id = self::$_manager->add_customer($this);
+        else
+            self::$_manager->edit_customer($this);
+    }
 }
 
 ?>
