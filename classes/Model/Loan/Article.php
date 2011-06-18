@@ -1,7 +1,7 @@
 <?php
 
 class Model_Loan_Article {
-    private $_id, $_loan, $_article, $_begindate, $_enddate;
+    private $_id, $_loan, $_article, $_quantity, $_begindate, $_enddate;
     private static $_manager;
 
 
@@ -51,6 +51,14 @@ class Model_Loan_Article {
 
     public function setArticle($article) {
         $this->_article = $article;
+    }
+    
+    public function getQuantity() {
+        return $this->_quantity;
+    }
+    
+    public function setQuantity($quantity) {
+        $this->_quantity = $quantity;
     }
 
     public function getBegindate() {
