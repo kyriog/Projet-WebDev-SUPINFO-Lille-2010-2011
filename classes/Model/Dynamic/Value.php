@@ -51,6 +51,9 @@ class Model_Dynamic_Value {
     }
 
     public function getValue() {
+        if(is_null($this->_value)) {
+            return self::$_manager->getValue($this->_id_field, $this->_id_article);
+        }
         return $this->_value;
     }
 
@@ -58,7 +61,7 @@ class Model_Dynamic_Value {
         $this->_value = $value;
     }
 
-    public static function getValueByIds($id_field, $id_article) {
+    public function getValueByIds($id_field, $id_article) {
         self::init();
         return self::$_manager->getValue($id_field, $id_article);
     }
