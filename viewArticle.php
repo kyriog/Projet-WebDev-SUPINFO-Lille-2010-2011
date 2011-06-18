@@ -120,6 +120,7 @@ elseif(isset($_GET['id'])) {
                 <td><?php echo $dynamic_value->getValue();?></td>
                 <?php }
                 ?>
+                <td><a href="editArticle.php?id=<?php echo $article->getId();?>">Editer</a></td>
             </tr>
         </table>
     </body>
