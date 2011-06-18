@@ -40,6 +40,8 @@ class Model_Dynamic_Value {
 
     public function setId_field($id_field) {
         $this->_id_field = $id_field;
+        if(!is_null($this->_id_article) && is_null($this->_id))
+            $this->_id = self::$_manager->getId($this->_id_field, $this->_id_article);
     }
 
     public function getId_article() {
@@ -48,10 +50,13 @@ class Model_Dynamic_Value {
 
     public function setId_article($id_article) {
         $this->_id_article = $id_article;
+        if(!is_null($this->_id_field) && is_null($this->_id));
+            $this->_id = self::$_manager->getId($this->_id_field, $this->_id_article);
     }
 
     public function getValue() {
         if(is_null($this->_value)) {
+            $this->_id = self::$_manager->getId($this->_id_field, $this->_id_article);
             return self::$_manager->getValue($this->_id_field, $this->_id_article);
         }
         return $this->_value;
@@ -61,11 +66,6 @@ class Model_Dynamic_Value {
         $this->_value = $value;
     }
 
-    public function getValueByIds($id_field, $id_article) {
-        self::init();
-        return self::$_manager->getValue($id_field, $id_article);
-    }
-    
     public function save() {
         if(is_null($this->_id))
             $this->_id = self::$_manager->add_value($this);
