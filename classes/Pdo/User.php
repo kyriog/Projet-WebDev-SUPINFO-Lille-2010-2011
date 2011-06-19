@@ -4,7 +4,6 @@ class Pdo_User extends Pdo_Manager {
 
     public function add_user($user){
         $query = $this->pdo->prepare('INSERT INTO users(lname, fname, phone, password) VALUES (:lname, :fname, :phone, :password)');
-        $query->bindValue(':id', $user->getId());
         $query->bindValue(':lname', $user->getLname());
         $query->bindValue(':fname', $user->getFname());
         $query->bindValue(':phone', $user->getPhone());
