@@ -43,6 +43,14 @@ class Model_Place {
         }
     }
     
+    public function remove() {
+        if(!is_null($this->_id)) {
+            self::$_manager->delete_place($this->_id);
+            $this->_id = null;
+            $this->_name = null;
+        }
+    }
+    
     public static function getAllPlaces() {
         self::init();
         return self::$_manager->getAllPlaces();
