@@ -23,7 +23,7 @@ switch ($typeSearch) {
         $search = new Model_Loan($_POST['search']);
         $id = $search->getId();
         if(!is_null($id))
-            header ("Location: editLoan.php?id=$id");
+            header ("Location: printPage.php?id=$id");
         break;
             
 }
