@@ -22,8 +22,8 @@ else { ?>
     </head>
     <body>
         <form action="login.php" method="post">
-            <label for="lname">Lname : </label><input name="lname" type="text" id="lname"/><br/>
-            <label for="password">Password : </label><input name="password" type="password" id="password"/><br/>
+            <label for="lname">Identifiant : </label><input name="lname" type="text" id="lname"/><br/>
+            <label for="password">Mot de passe : </label><input name="password" type="password" id="password"/><br/>
             <input type="submit" value="Login !"/>            
         </form>
     </body>
