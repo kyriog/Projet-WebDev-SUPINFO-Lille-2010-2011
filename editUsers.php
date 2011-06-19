@@ -18,6 +18,14 @@ if(isset($_POST['action'])):
             $user->save();
             echo 'ok';
             break;
+        case 'updateUser':
+            $user = new Model_User($_POST['id']);
+            $user->setLname($_POST['lname']);
+            $user->setFname($_POST['fname']);
+            $user->setPhone($_POST['phone']);
+            $user->save();
+            echo 'ok/%/'.$user->getLname().'/%/'.$user->getFname().'/%/'.$user->getPhone();
+            break;
     }
 else:
     $users = Model_User::getAllUsers();
