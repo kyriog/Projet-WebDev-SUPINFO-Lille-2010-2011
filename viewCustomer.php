@@ -2,7 +2,10 @@
 session_start();
 require_once('config.php');
 require_once('autoload.php');
-$customers = Model_Customer::getAllCustomers();
+if(!isset($_GET['id']))
+    $customers = Model_Customer::getAllCustomers();
+else
+    $customers = array(new Model_Customer($_GET['id']));
 ?>
 <!DOCTYPE html>
 <html>
