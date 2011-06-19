@@ -35,10 +35,6 @@ class Model_Customer {
         return $this->_id;
     }
 
-    public function setId($id) {
-        $this->_id = $id;
-    }
-
     public function getLname() {
         return $this->_lname;
     }
@@ -92,6 +88,18 @@ class Model_Customer {
             $this->_id = self::$_manager->add_customer($this);
         else
             self::$_manager->edit_customer($this);
+    }
+    
+    public function remove() {
+        if(!is_null($this->_id))
+            self::$_manager->delete_customer($this->getId());
+        $this->_id = null;
+        $this->_lname = null;
+        $this->_fname = null;
+        $this->_function = null;
+        $this->_address = null;
+        $this->_phone = null;
+        $this->_structure = null;
     }
     
     public static function getAllCustomers() {
