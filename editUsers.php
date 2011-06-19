@@ -26,6 +26,11 @@ if(isset($_POST['action'])):
             $user->save();
             echo 'ok/%/'.$user->getLname().'/%/'.$user->getFname().'/%/'.$user->getPhone();
             break;
+        case 'delete':
+            $user = new Model_User($_POST['id']);
+            $user->remove();
+            echo 'ok';
+            break;
     }
 else:
     $users = Model_User::getAllUsers();
