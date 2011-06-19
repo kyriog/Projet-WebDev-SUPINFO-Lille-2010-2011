@@ -34,6 +34,15 @@ class Model_Place {
         $this->_name = $name;
     }
     
+    public function save() {
+        if(is_null($this->_id)) {
+            $this->_id = self::$_manager->add_place($this);
+        }
+        else {
+            self::$_manager->edit_place($this);
+        }
+    }
+    
     public static function getAllPlaces() {
         self::init();
         return self::$_manager->getAllPlaces();
