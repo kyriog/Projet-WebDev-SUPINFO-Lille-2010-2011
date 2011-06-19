@@ -20,7 +20,7 @@ if(!isset($_POST['submit']) || $_POST['lname'] == "" || $_POST['fname'] == "" ||
         <form action="addCustomer.php" method="post">
             <table>
                 <tr>
-                    <td><label for="lname">Last name : </label></td>
+                    <td><label for="lname">Nom : </label></td>
                     <td>
                         <input type="text" name="lname" id="lname" 
                         <?php 
@@ -37,7 +37,7 @@ if(!isset($_POST['submit']) || $_POST['lname'] == "" || $_POST['fname'] == "" ||
                 
                 
                 <tr>
-                    <td><label for="fname">First name : </label></td>
+                    <td><label for="fname">Prénom : </label></td>
                     <td>
                         <input type="text" name="fname" id="fname" 
                             <?php 
@@ -54,7 +54,7 @@ if(!isset($_POST['submit']) || $_POST['lname'] == "" || $_POST['fname'] == "" ||
                 
                 
                 <tr>
-                    <td><label for="phone">Phone : </label></td>
+                    <td><label for="phone">Téléphone : </label></td>
                     <td>
                         <input type="text" name="phone" id="phone" 
                             <?php 
@@ -74,7 +74,7 @@ if(!isset($_POST['submit']) || $_POST['lname'] == "" || $_POST['fname'] == "" ||
                     <td><label for="structure">Structure : </label></td>
                     <td>
                         <select name="structure" id="structure">
-                            <option value="">select a structure</option>
+                            <option value="">Sélectionnez une structure</option>
                             <?php foreach($structures as $structure) { ?>
                             <option value="<?php echo $structure->getId();?>" <?php if(isset($customer) && $structure->getId() == $customer->getStructure()) echo "selected='selected'";?>><?php echo $structure->getName();?></option>
                             <?php } ?>
@@ -85,7 +85,7 @@ if(!isset($_POST['submit']) || $_POST['lname'] == "" || $_POST['fname'] == "" ||
                 
                 
                 <tr>
-                    <td><label for="function">Function : </label></td>
+                    <td><label for="function">Fonction : </label></td>
                     <td>
                         <input type="text" name="function" id="function" 
                             <?php 
@@ -101,7 +101,7 @@ if(!isset($_POST['submit']) || $_POST['lname'] == "" || $_POST['fname'] == "" ||
                 </tr>
                 
                 
-                <tr><td><label for="address">Address : </label></td>
+                <tr><td><label for="address">Adresse : </label></td>
                     <td>
                         <input type="text" name="address" id="address"
                                <?php
@@ -118,7 +118,7 @@ if(!isset($_POST['submit']) || $_POST['lname'] == "" || $_POST['fname'] == "" ||
             <?php if(isset($customer)) { ?>
             <input type="hidden" name="id" value="<?php echo $customer->getId();?>" />
             <?php } ?>
-            <input type="submit" name="submit"/>
+            <input type="submit" name="submit" value="valider"/>
         </form>
     </body>
 </html>
