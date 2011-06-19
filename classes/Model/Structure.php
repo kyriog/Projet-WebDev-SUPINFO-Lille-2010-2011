@@ -33,11 +33,19 @@ class Model_Structure {
         $this->_name = $name;
     }
     
+    public function save() {
+        if(is_null($this->_id)) {
+            $this->_id = self::$_manager->add_structure($this);
+        }
+        else {
+            self::$_manager->edit_structure($this);
+        }
+    }
+    
     public static function getAllStructures(){
         self::init();
         return self::$_manager->getAllStructures();
     }
-
 }
 
 ?>
