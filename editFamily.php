@@ -1,6 +1,8 @@
 <?php
+session_start();
 require_once('config.php');
 require_once('autoload.php');
+Helper_Access::rejectIfLogout();
 $familyManager = new Pdo_Family();
 if(isset($_POST['send'])) {
     $id = (!empty($_POST['id'])) ? $_POST['id'] : NULL;

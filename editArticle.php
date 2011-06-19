@@ -2,7 +2,7 @@
 session_start();
 require_once('config.php');
 require_once('autoload.php');
-
+Helper_Access::rejectIfLogout();
 if(isset($_GET['id'])) {
     $article = new Model_Article($_GET['id']);
     $family = new Model_Family($article->getFamily());

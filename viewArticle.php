@@ -2,7 +2,7 @@
 session_start();
 require_once('config.php');
 require_once('autoload.php');
-
+Helper_Access::rejectIfLogout();
 //Si on veut accèder aux articles d'une famille.
 if(isset($_GET['family'])) {
     ?>

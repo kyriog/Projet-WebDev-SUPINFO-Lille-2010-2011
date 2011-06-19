@@ -2,6 +2,7 @@
 session_start();
 require_once('config.php');
 require_once('autoload.php');
+Helper_Access::rejectIfLogout();
 if(!isset($_POST['barCode'])) {
 $families = Model_Family::getAllFamilies();
 ?>

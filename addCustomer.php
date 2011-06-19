@@ -2,6 +2,7 @@
 session_start();
 require_once('config.php');
 require_once('autoload.php');
+Helper_Access::rejectIfLogout();
 if(!isset($_POST['submit']) || $_POST['lname'] == "" || $_POST['fname'] == "" || $_POST['phone'] == "" || $_POST['structure'] == "" || $_POST['function'] == "" || isset($_GET['id']))
 {
     if(isset($_GET['id']))
