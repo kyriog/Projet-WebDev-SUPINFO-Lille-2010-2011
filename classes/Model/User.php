@@ -77,6 +77,11 @@ class Model_User {
         else
             self::$_manager->edit_user($this);
     }
+    
+    public static function getAllUsers() {
+        self::init();
+        return self::$_manager->getAllUsers();
+    }
 }
 
 ?>
