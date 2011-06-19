@@ -138,6 +138,7 @@ else:
         </script>
     </head>
     <body>
+        <?php include_once 'search.php';?>
         <h1>Gestion des structures</h1>
         <table id="structure_container">
             <?php foreach($structures as $structure): ?>

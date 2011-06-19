@@ -90,6 +90,7 @@ require_once('autoload.php');
     else:
     ?>
     <body>
+        <?php include_once 'search.php';?>
         <script type="text/javascript">
             $(document).ready(function() {
                 $(".article_delete").live('click',function(){

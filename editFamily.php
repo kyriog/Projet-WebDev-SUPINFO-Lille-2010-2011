@@ -49,6 +49,7 @@ else {
             </script>
         </head>
         <body>
+            <?php include_once 'search.php';?>
             <form action="editFamily.php" method="post">
                 <label for="name">Nom : </label><input type="text" id="name" name="name" value="<?php echo $family->getName();?>"/><br />
                 <label for="parentfamily">Famille mère : </label><select name="parentfamily" id="parentfamily">

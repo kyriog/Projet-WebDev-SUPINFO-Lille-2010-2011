@@ -67,6 +67,7 @@ else
         </style>
     </head>
     <body>
+        <?php include 'search.php';?>       
         <table>
             <thead><th>Identifiant</th><th>Prénom</th><th>Nom</th><th>Téléphone</th><th>Structure</th><th>Fonction</th><th>Adresse</th></thead>
             <tbody>
