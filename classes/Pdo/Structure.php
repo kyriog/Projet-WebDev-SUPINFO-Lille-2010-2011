@@ -3,7 +3,7 @@ class Pdo_Structure extends Pdo_Manager {
     
     public function add_structure($structure){
         $query = $this->pdo->prepare('INSERT INTO structures(name) VALUES (:name)');
-        $query->bindValue(':name', $structure>getName());
+        $query->bindValue(':name', $structure->getName());
         $query->execute();
         return $this->pdo->lastInsertId();
     }
@@ -11,7 +11,7 @@ class Pdo_Structure extends Pdo_Manager {
     public function edit_structure($structure){
         $query = $this->pdo->prepare('UPDATE structures SET name = :name WHERE id = :id');
         $query->bindValue(':id', $structure->getId());
-        $query->bindValue(':name', $structure>getName());
+        $query->bindValue(':name', $structure->getName());
         $query->execute();
     }
 
