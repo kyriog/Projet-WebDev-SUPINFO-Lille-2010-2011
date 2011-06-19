@@ -9,6 +9,15 @@ $loans = Model_Loan::getAllLoans();
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+            th, td {
+                border: 1px solid black;
+                padding: 5px 5px 5px 5px;
+            }
+        </style>
     </head>
     <body>
         <?php include 'search.php'; ?>
