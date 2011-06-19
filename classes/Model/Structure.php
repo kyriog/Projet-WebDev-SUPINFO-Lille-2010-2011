@@ -25,10 +25,6 @@ class Model_Structure {
         return $this->_id;
     }
 
-    public function setId($id) {
-        $this->_id = $id;
-    }
-
     public function getName() {
         return $this->_name;
     }
@@ -37,11 +33,27 @@ class Model_Structure {
         $this->_name = $name;
     }
     
+    public function save() {
+        if(is_null($this->_id)) {
+            $this->_id = self::$_manager->add_structure($this);
+        }
+        else {
+            self::$_manager->edit_structure($this);
+        }
+    }
+    
+    public function remove() {
+        if(!is_null($this->_id)) {
+            self::$_manager->delete_structure($this->_id);
+            $this->_id = null;
+            $this->_name = null;
+        }
+    }
+    
     public static function getAllStructures(){
         self::init();
         return self::$_manager->getAllStructures();
     }
-
 }
 
 ?>

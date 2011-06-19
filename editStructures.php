@@ -4,13 +4,21 @@ require_once('autoload.php');
 if(isset($_POST['action'])):
     switch($_POST['action']) {
         case 'add':
-            echo ($_POST['name'] == "") ? 'ok/%/1/%/Test' : "err";
+            $structure = new Model_Structure();
+            $structure->setName($_POST['name']);
+            $structure->save();
+            echo 'ok/%/'.$structure->getId().'/%/'.$structure->getName();
             break;
         case 'edit':
-            echo ($_POST['id'] == "1" && $_POST['name'] == "test") ? 'ok/%/Test edit' : "err";
+            $structure = new Model_Structure($_POST['id']);
+            $structure->setName($_POST['name']);
+            $structure->save();
+            echo 'ok/%/'.$structure->getName();
             break;
         case 'delete':
-            echo ($_POST['id'] == "1") ? 'ok' : "err";
+            $structure = new Model_Structure($_POST['id']);
+            $structure->remove();
+            echo 'ok';
             break;
     }
 else: 
@@ -65,14 +73,14 @@ else:
                 $(".structure_action_edit").live('click', function() {
                     var id = $(".structure_action").index($(this).parent());
                     var name = $($(".structure_name")[id]).text();
-                    $($(".structure_name")[id]).html("<input type=\"text\" id=\"structure_input_"+id+"\" value=\""+name+"\" /><span id=\"structure_original_"+id+"\" class=\"hidden\">"+name+"</span>");
+                    $($(".structure_name")[id]).html("<input type=\"text\" class=\"structure_input\" value=\""+name+"\" /><span class=\"structure_original hidden\">"+name+"</span>");
                     $($(".structure_action")[id]).html(action_confirm);
                 });
                 $(".structure_action_confirm_edit").live('click', function() {
                     var id = $(".structure_action").index($(this).parent());
-                    var name = $("#structure_input_"+id).val();
+                    var name = $($(".structure_name")[id]).children(".structure_input").val();
                     var id_db = $($(".structure_id")[id]).text();
-                    $("#structure_input_"+id).attr("disabled","disabled");
+                    $($(".structure_action")[id]).children(".structure_input").attr("disabled","disabled");
                     $($(".structure_action")[id]).removeClass("pointer");
                     $($(".structure_action")[id]).html(action_loading);
                     $.ajax({
@@ -93,29 +101,35 @@ else:
                 });
                 $(".structure_action_cancel_edit").live('click', function() {
                     var id = $(".structure_action").index($(this).parent());
-                    var name = $("#structure_original_"+id).text();
+                    var name = $($(".structure_name")[id]).children(".structure_original").text();
                     $($(".structure_name")[id]).text(name);
                     $($(".structure_action")[id]).html(action_edit);
                 });
                 $(".structure_action_delete").live('click', function() {
                     var id = $(".structure_action").index($(this).parent());
+                    var name = $($(".structure_name")[id]).text();
                     var id_db = $($(".structure_id")[id]).text();
                     $($(".structure_action")[id]).removeClass("pointer");
                     $($(".structure_action")[id]).html(action_loading);
-                    $.ajax({
-                        type: "POST",
-                        url: "editStructures.php",
-                        data: "action=delete&id="+id_db,
-                        success: function(msg) {
-                            if($.trim(msg) == "ok") {
-                                $($(".structure_div")[id]).fadeOut(1000, function() {
-                                    $(this).remove();
-                                })
-                            } else {
-                                $($(".structure_action")[id]).html(action_alert);
+                    if(confirm("Êtes-vous sûr de vouloir supprimer la structure "+name+" ?")) {
+                        $.ajax({
+                            type: "POST",
+                            url: "editStructures.php",
+                            data: "action=delete&id="+id_db,
+                            success: function(msg) {
+                                if($.trim(msg) == "ok") {
+                                    $($(".structure_div")[id]).fadeOut(1000, function() {
+                                        $(this).remove();
+                                    })
+                                } else {
+                                    $($(".structure_action")[id]).html(action_alert);
+                                }
                             }
-                        }
-                    })
+                        })
+                    } else {
+                        $($(".structure_action")[id]).html(action_edit);
+                        $($(".structure_action")[id]).addClass("pointer");
+                    }
                 });
                 $("#refresh").click(function() {
                     window.location = "editStructures.php";
