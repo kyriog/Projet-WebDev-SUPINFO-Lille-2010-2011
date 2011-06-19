@@ -35,10 +35,6 @@ class Model_Customer {
         return $this->_id;
     }
 
-    public function setId($id) {
-        $this->_id = $id;
-    }
-
     public function getLname() {
         return $this->_lname;
     }
