@@ -4,7 +4,10 @@ require_once('autoload.php');
 if(isset($_POST['action'])):
     switch($_POST['action']) {
         case 'add':
-            echo ($_POST['name'] == "err") ? "err" : 'ok/%/'.rand(1,1000).'/%/'.$_POST['name'];
+            $structure = new Model_Structure();
+            $structure->setName($_POST['name']);
+            $structure->save();
+            echo 'ok/%/'.$structure->getId().'/%/'.$structure->getName();
             break;
         case 'edit':
             echo ($_POST['name'] == "err") ? "err" : 'ok/%/'.$_POST['name'];
