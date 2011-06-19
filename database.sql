@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Sam 18 Juin 2011 à 22:50
+-- Généré le : Dim 19 Juin 2011 à 14:29
 -- Version du serveur: 5.5.8
 -- Version de PHP: 5.3.5
 
@@ -166,8 +166,10 @@ CREATE TABLE IF NOT EXISTS `structures` (
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(30) NOT NULL,
   `password` varchar(40) NOT NULL,
+  `lname` varchar(100) NOT NULL,
+  `fname` varchar(100) NOT NULL,
+  `phone` varchar(13) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
