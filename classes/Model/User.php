@@ -31,10 +31,6 @@ class Model_User {
         return $this->_id;
     }
 
-    public function setId($id) {
-        $this->_id = $id;
-    }
-
     public function getFname() {
         return $this->_fname;
     }
