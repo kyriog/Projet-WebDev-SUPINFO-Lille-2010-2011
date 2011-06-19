@@ -16,7 +16,9 @@ if(isset($_POST['action'])):
             echo 'ok/%/'.$structure->getName();
             break;
         case 'delete':
-            echo ($_POST['id'] == "1") ? "err" : 'ok';
+            $structure = new Model_Structure($_POST['id']);
+            $structure->remove();
+            echo 'ok';
             break;
     }
 else: 
