@@ -1,25 +1,29 @@
 <?php
 
 class Model_User {
-    private $_id, $_name, $_password;
+    private $_id, $_fname, $_lname, $_phone, $_password;
     private static $_manager;
     
     function __construct($id = null) {
         self::init();
         if(is_null($id)) {
             $this->_id = null;
-            $this->_name=null;
+            $this->_fname=null;
+            $this->_lname=null;
+            $this->_phone=null;
             $this->_password=null;
         }
         else {
             $user = self::$_manager->getUser($id);
             $this->_id = $user['id'];
-            $this->_name=$user['username'];
+            $this->_fname=$user['fname'];
+            $this->_lname=$user['lname'];
+            $this->_phone=$user['phone'];
             $this->_password=$user['password'];
         }
     }
 
-    private static function init() {
+        private static function init() {
         if(!is_object(self::$_manager)) self::$_manager = new Pdo_User();
     }
     
@@ -31,12 +35,28 @@ class Model_User {
         $this->_id = $id;
     }
 
-    public function getName() {
-        return $this->_name;
+    public function getFname() {
+        return $this->_fname;
     }
 
-    public function setName($name) {
-        $this->_name = $name;
+    public function setFname($fname) {
+        $this->_fname = $fname;
+    }
+
+    public function getLname() {
+        return $this->_lname;
+    }
+
+    public function setLname($_lname) {
+        $this->_lname = $_lname;
+    }
+
+    public function getPhone() {
+        return $this->_phone;
+    }
+
+    public function setPhone($_phone) {
+        $this->_phone = $_phone;
     }
 
     public function getPassword() {
