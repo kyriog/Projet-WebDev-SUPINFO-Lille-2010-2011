@@ -26,10 +26,6 @@ class Model_Place {
         return $this->_id;
     }
 
-    public function setId($id) {
-        $this->_id = $id;
-    }
-
     public function getName() {
         return $this->_name;
     }
