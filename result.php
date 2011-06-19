@@ -48,6 +48,7 @@ switch ($typeSearch) {
         </style>
     </head>
     <body>
+        <?php include 'search.php';?>
         <h3>Votre recherche n'a pas pu aboutir, voici la liste des éléments du même type que votre recherche</h3>
     <?php switch($typeSearch) {
         case 1: 

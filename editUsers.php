@@ -240,34 +240,37 @@ else:
             })
         </script>
     </head>
-    <h1>Gestion des utilisateurs</h1>
-    <table id="user_container">
-        <thead>
-            <th>id</th>
-            <th>Mot de passe</th>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>Téléphone</th>
-        </thead>
-        <tbody>
-            <?php foreach($users as $user): ?>
-            <tr class="user_line">
-                <td class="user_id"><?php echo $user->getId() ?></td>
-                <td class="user_password center"><button class="user_password_reset">Réinitialiser le mot de passe</button></td>
-                <td class="user_lname"><?php echo $user->getLname() ?></td>
-                <td class="user_fname"><?php echo $user->getFname() ?></td>
-                <td class="user_phone"><?php echo $user->getPhone() ?></td>
-                <td class="user_action pointer"><img src="media/edit.png" alt="Éditer" class="user_action_edit" />&nbsp;<img src="media/delete.png" alt="Supprimer" class="user_action_delete" /></td>
-            </tr>
-            <?php endforeach ?>
-            <tr class="user_line" id="lastline">
-                <td class="user_id"></td>
-                <td class="user_password"><input type="password" class="user_input_password1" /><input type="password" class="user_input_password2" /><span class="user_password_info"></span></td>
-                <td class="user_lname"><input type="text" class="user_input_lname" /></td>
-                <td class="user_fname"><input type="text" class="user_input_fname" /></td>
-                <td class="user_phone"><input type="text" class="user_input_phone" /></td>
-            </tr>
-        </tbody>
-    </table>
+    <body>
+        <?php include_once 'search.php';?>
+        <h1>Gestion des utilisateurs</h1>
+        <table id="user_container">
+            <thead>
+                <th>id</th>
+                <th>Mot de passe</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Téléphone</th>
+            </thead>
+            <tbody>
+                <?php foreach($users as $user): ?>
+                <tr class="user_line">
+                    <td class="user_id"><?php echo $user->getId() ?></td>
+                    <td class="user_password center"><button class="user_password_reset">Réinitialiser le mot de passe</button></td>
+                    <td class="user_lname"><?php echo $user->getLname() ?></td>
+                    <td class="user_fname"><?php echo $user->getFname() ?></td>
+                    <td class="user_phone"><?php echo $user->getPhone() ?></td>
+                    <td class="user_action pointer"><img src="media/edit.png" alt="Éditer" class="user_action_edit" />&nbsp;<img src="media/delete.png" alt="Supprimer" class="user_action_delete" /></td>
+                </tr>
+                <?php endforeach ?>
+                <tr class="user_line" id="lastline">
+                    <td class="user_id"></td>
+                    <td class="user_password"><input type="password" class="user_input_password1" /><input type="password" class="user_input_password2" /><span class="user_password_info"></span></td>
+                    <td class="user_lname"><input type="text" class="user_input_lname" /></td>
+                    <td class="user_fname"><input type="text" class="user_input_fname" /></td>
+                    <td class="user_phone"><input type="text" class="user_input_phone" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
 </html>
 <?php endif ?>

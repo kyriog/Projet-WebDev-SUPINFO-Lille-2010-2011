@@ -8,8 +8,6 @@ require_once('autoload.php');
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
-    </head>
-    <body>
         <style type="text/css">
             table{
                 border-collapse: collapse;
@@ -21,6 +19,9 @@ require_once('autoload.php');
                 padding-right: 5px;
             }
         </style>
+    </head>
+    <body>
+        <?php include 'search.php';?>
         <table>
             <tr><th>Name</th><th>Parent Family</th></tr>
             <?php 

@@ -17,6 +17,7 @@ if($_SESSION['ip'] == $_SERVER['REMOTE_ADDR']):
         <title></title>
     </head>
     <body>
+        <?php include_once 'search.php';?>
         <form action="addUser.php" method="post">
             <table>
             <tr><td><label for="fname">Prénom : </label></td><td><input name="fname" id="fname" type="text"/></td></tr>

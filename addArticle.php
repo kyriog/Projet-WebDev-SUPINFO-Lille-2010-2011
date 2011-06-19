@@ -27,6 +27,7 @@ $families = Model_Family::getAllFamilies();
         </script>
     </head>
     <body>
+        <?php include_once 'search.php';?>
         <form method="post" action="addArticle.php">
             <label for="family">Family : </label>
             <select name="family" id="family">

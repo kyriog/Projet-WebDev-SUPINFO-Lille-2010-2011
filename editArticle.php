@@ -15,6 +15,7 @@ if(isset($_GET['id'])) {
         <title></title>
     </head>
     <body>
+        <?php include_once 'search.php';?>
         <form method="post" action="editArticle.php">
             <table>
                 <tr><td><label for="barcode">Code barre</label></td><td><input id="barCode" name="barcode" type="text" value="<?php echo $article->getBarcode();?>"></td></tr>

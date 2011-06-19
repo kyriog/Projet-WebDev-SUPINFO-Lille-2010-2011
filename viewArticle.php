@@ -49,6 +49,7 @@ if(isset($_GET['family'])) {
         </script>
     </head>
     <body>
+        <?php include 'search.php';?>
         <div id="articles">
         <?php
         require_once "articlesTable.php";
@@ -71,8 +72,6 @@ elseif(isset($_GET['id'])) {
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
-    </head>
-    <body>
         <style type="text/css">
             table{
                 border-collapse: collapse;
@@ -84,6 +83,10 @@ elseif(isset($_GET['id'])) {
                 padding-right: 5px;
             }
         </style>
+    </head>
+    <body>
+        <?php include 'search.php';?>
+
         <table>
             <caption>Article : <?php echo $article->getId(); ?></caption>
             <tr>

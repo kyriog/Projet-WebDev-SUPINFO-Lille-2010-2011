@@ -44,6 +44,7 @@ else
         </style>
     </head>
     <body>
+        <?php include 'search.php';?>       
         <table>
             <tr><th>Identifiant</th><th>Prénom</th><th>Nom</th><th>Téléphone</th><th>Structure</th><th>Fonction</th><th>Adresse</th></tr>
             <?php foreach($customers as $customer) { 
