@@ -117,8 +117,18 @@ if(isset($_GET['id']) && $_SESSION['ip'] == $_SERVER['REMOTE_ADDR']) {
                 text-align: left;
                 vertical-align: top;
             }
-            
         </style>
+        <script type="text/javascript" src="jquery-1.6.1.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#print").click(function() {
+                    $(this).hide(0, function() {
+                        window.print();
+                        $(this).show(0);
+                    });
+                });
+            });
+        </script>
     </head>
     <body>
         <div class="header"><img src="media/header.png" alt="bannière" /></div>
@@ -173,6 +183,11 @@ if(isset($_GET['id']) && $_SESSION['ip'] == $_SERVER['REMOTE_ADDR']) {
                 <td></td>
                 <td class="signature">
                     Prêteur :
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" style="text-align: center">
+                    <button id="print">Imprimer</button>
                 </td>
             </tr>
         </table>
