@@ -81,6 +81,11 @@ class Model_Loan_Article {
             self::$_manager->edit_loan_article($this);
         }
     }
+    
+    public static function getAllArticlesByLoanId($id) {
+        self::init();
+        return self::$_manager->getAllArticlesByLoanId($id);    
+    }
 }
 
 ?>
