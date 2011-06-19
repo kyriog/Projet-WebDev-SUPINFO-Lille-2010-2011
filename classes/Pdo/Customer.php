@@ -37,5 +37,16 @@ class Pdo_Customer extends Pdo_Manager {
         $query->execute();
         return $query->fetch(PDO::FETCH_ASSOC);
     }
+    
+    public function getAllCustomers() {
+        $query = $this->pdo->prepare("SELECT id FROM customers");
+        $query->execute();
+        $array = array();
+        while($value = $query->fetch(PDO::FETCH_ASSOC)) {
+            $customer = new Model_Customer($value['id']);
+            array_push($array, $customer);
+        }
+        return $array;
+    }
 }
 ?>

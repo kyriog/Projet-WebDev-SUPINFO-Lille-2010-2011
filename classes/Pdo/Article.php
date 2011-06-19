@@ -49,5 +49,16 @@ class Pdo_Article extends Pdo_Manager {
         $query->bindValue(':place', $article->getPlace());        
         $query->execute();
     }
+    
+    public function getAllArticles() {
+        $query = $this->pdo->prepare('SELECT id FROM articles');
+        $query->execute();
+        $array = array();
+        while($value = $query->fetch(PDO::FETCH_ASSOC)) {
+            $article = new Model_Article($value['id']);
+            array_push($array, $article);
+        }
+        return $array;
+    }
 }
 ?>

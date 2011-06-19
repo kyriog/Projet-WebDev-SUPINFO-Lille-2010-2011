@@ -103,6 +103,11 @@ class Model_Article {
         else
             self::$_manager->edit_article($this);
     }
+    
+    public static function getAllArticles() {
+        self::init();
+        return self::$_manager->getAllArticles();
+    }
 }
 
 ?>

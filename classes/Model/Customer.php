@@ -5,7 +5,7 @@ class Model_Customer {
     private static $_manager;
     
     function __construct($id = null) {
-        self::_init();
+        self::init();
         if(is_null($id)) {
             $this->_id = null;
             $this->_lname = null;
@@ -27,7 +27,7 @@ class Model_Customer {
         }
     }
     
-    private static function _init() {
+    private static function init() {
         if(!is_object(self::$_manager)) self::$_manager = new Pdo_Customer();
     }
     
@@ -92,6 +92,11 @@ class Model_Customer {
             $this->_id = self::$_manager->add_customer($this);
         else
             self::$_manager->edit_customer($this);
+    }
+    
+    public static function getAllCustomers() {
+        self::init();
+        return self::$_manager->getAllCustomers();
     }
 }
 
