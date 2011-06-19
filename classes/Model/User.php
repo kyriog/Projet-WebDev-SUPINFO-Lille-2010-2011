@@ -74,6 +74,17 @@ class Model_User {
             self::$_manager->edit_user($this);
     }
     
+    public function remove() {
+        if(!is_null($this->_id)) {
+            self::$_manager->delete_user($this->getId());
+        }
+        $this->_id = null;
+        $this->_password = null;
+        $this->_lname = null;
+        $this->_fname = null;
+        $this->_phone = null;
+    }
+    
     public static function getAllUsers() {
         self::init();
         return self::$_manager->getAllUsers();
