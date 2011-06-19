@@ -3,7 +3,6 @@ class Pdo_Place extends Pdo_Manager {
     
     public function add_place($place){
         $query = $this->pdo->prepare('INSERT INTO places(name) VALUES (:name)');
-        $query->bindValue(':id', $place->getId());
         $query->bindValue(':name', $place->getName());
         $query->execute();
         return $this->pdo->lastInsertId();
