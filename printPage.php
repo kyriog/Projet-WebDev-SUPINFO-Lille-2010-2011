@@ -153,7 +153,7 @@ if(isset($_GET['id']) && $_SESSION['ip'] == $_SERVER['REMOTE_ADDR']) {
                 <tr><th>Code</th><th>Désignation</th><th>Qté</th><th></th><th></th><th></th></tr>
                 <?php
                 $articles = Model_Loan_Article::getAllArticlesByLoanId($loan->getId());
-                for($i = 0; $i < 25; $i++) {
+                for($i = 0; $i < 20; $i++) {
                     if($i < count($articles))
                         $article = $articles[$i];
                     else
