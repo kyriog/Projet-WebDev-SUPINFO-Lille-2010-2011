@@ -17,11 +17,11 @@ if(isset($_GET['id'])) {
     <body>
         <form method="post" action="editArticle.php">
             <table>
-                <tr><td><label for="barcode">Barcode</label></td><td><input id="barCode" name="barcode" type="text" value="<?php echo $article->getBarcode();?>"></td></tr>
-                <tr><td><label for="quantity">Quantity</label></td><td><input id="quantity" name="quantity" type="text" value="<?php echo $article->getQuantity();?>"/></td></tr>
+                <tr><td><label for="barcode">Code barre</label></td><td><input id="barCode" name="barcode" type="text" value="<?php echo $article->getBarcode();?>"></td></tr>
+                <tr><td><label for="quantity">Quantité</label></td><td><input id="quantity" name="quantity" type="text" value="<?php echo $article->getQuantity();?>"/></td></tr>
                 <tr><td><label for="description">Description</label></td><td><input id="description" name="description" type="text" value="<?php echo $article->getDescription();?>"/></td></tr>
                 <tr>
-                    <td><label for="state">State</label></td>
+                    <td><label for="state">Etat</label></td>
                     <td>
                         <select name="state" id="state">
                             <option value="OK" <?php if($article->getState() == 'OK') echo "selected='selected'";?>>OK</option>
@@ -30,7 +30,7 @@ if(isset($_GET['id'])) {
                         </select>
                     </td>
                 </tr>
-                <tr><td><label for="place">Storage place</label></td>
+                <tr><td><label for="place">Lieu de stockage</label></td>
                     <td>
                         <select name="place" id="place">
                             <?php 
@@ -55,7 +55,7 @@ if(isset($_GET['id'])) {
                 </tr>
                 <?php } ?>
             </table>
-            <input type="submit"/>
+            <input type="submit" value="valider"/>
             <input type="hidden" name="id" value="<?php echo $_GET['id']?>" />
         </form>
     </body>

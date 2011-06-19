@@ -30,20 +30,20 @@ $families = Model_Family::getAllFamilies();
         <form method="post" action="addArticle.php">
             <label for="family">Family : </label>
             <select name="family" id="family">
-                <option value="-1">None</option>
+                <option value="-1">Aucune</option>
                 <?php 
                 foreach($families as $family) { ?>
                 <option value="<?php echo $family->getId();?>"><?php echo $family->getName();?></option>
                 <?php
                 } ?>
             </select>
-            <fieldset><legend>Standard fields</legend>
+            <fieldset><legend>Champs standards</legend>
             <table>
-                <tr><td><label for="barCode">Barcode</label></td><td><input id="barCode" name="barCode" type="text"></td></tr>
-                <tr><td><label for="quantity">Quantity</label></td><td><input id="quantity" name="quantity" type="text"/></td></tr>
+                <tr><td><label for="barCode">Code Barre</label></td><td><input id="barCode" name="barCode" type="text"></td></tr>
+                <tr><td><label for="quantity">Quantité</label></td><td><input id="quantity" name="quantity" type="text"/></td></tr>
                 <tr><td><label for="description">Description</label></td><td><input id="description" name="description" type="text"/></td></tr>
                 <tr>
-                    <td><label for="state">State</label></td>
+                    <td><label for="state">Etat</label></td>
                     <td>
                         <select name="state" id="state">
                             <option value="OK">OK</option>
@@ -52,7 +52,7 @@ $families = Model_Family::getAllFamilies();
                         </select>
                     </td>
                 </tr>
-                <tr><td><label for="place">Storage place</label></td>
+                <tr><td><label for="place">Lieu de stockage</label></td>
                     <td>
                         <select name="place" id="place">
                             <?php 
@@ -65,12 +65,12 @@ $families = Model_Family::getAllFamilies();
                 </tr>
             </table>
             </fieldset>
-            <fieldset><legend>Dynamics fields</legend>
+            <fieldset><legend>Champs dynamiques</legend>
             <div id="addArticle">
                 <p>Merci de d'abord sélectionner une famille</p>
             </div>
             </fieldset>
-            <input type="submit" />
+            <input type="submit" value="valider"/>
         </form>
     </body>
 </html>

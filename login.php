@@ -2,11 +2,11 @@
 session_start();
 require_once('config.php');
 require_once('autoload.php');
-if(isset($_POST['username']) && isset($_POST['password'])) {
+if(isset($_POST['lname']) && isset($_POST['password'])) {
     $user = new Model_User();
     
     //Ici le "user =" servira si on a besoin de récupérer les données du client, sinon on peut supprimer cette partie.
-    if($user = $user->login($_POST['username'], $_POST['password']))
+    if($user = $user->login($_POST['lname'], $_POST['password']))
     {
         $_SESSION['id'] = $user->getId();
         $_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
@@ -22,8 +22,8 @@ else { ?>
     </head>
     <body>
         <form action="login.php" method="post">
-            <label for="username">Username : </label><input name="username" type="text" id="username"/><br/>
-            <label for="password">Password : </label><input name="password" type="password" id="password"/><br/>
+            <label for="lname">Identifiant : </label><input name="lname" type="text" id="lname"/><br/>
+            <label for="password">Mot de passe : </label><input name="password" type="password" id="password"/><br/>
             <input type="submit" value="Login !"/>            
         </form>
     </body>

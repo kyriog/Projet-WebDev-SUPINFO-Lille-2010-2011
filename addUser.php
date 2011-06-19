@@ -18,11 +18,13 @@ if($_SESSION['ip'] == $_SERVER['REMOTE_ADDR']):
     </head>
     <body>
         <form action="addUser.php" method="post">
-            <label for="fname">First Name : </label><input name="fname" id="fname" type="text"/><br />
-            <label for="lname">Last Name : </label><input name="lname" id="lname" type="text"/><br />
-            <label for="phone">Phone number : </label><input name="phone" id="phone" type="text"/><br />
-            <label for="password">Password : </label><input name="password" id="password" type="password"/><br />
-            <input type="submit" name="submit" value="Create !"/>
+            <table>
+            <tr><td><label for="fname">Prénom : </label></td><td><input name="fname" id="fname" type="text"/></td></tr>
+            <tr><td><label for="lname">Nom : </label></td><td><input name="lname" id="lname" type="text"/></td></tr>
+            <tr><td><label for="phone">Téléphone : </label></td><td><input name="phone" id="phone" type="text"/></td></tr>
+            <tr><td><label for="password">Mot de passe : </label></td><td><input name="password" id="password" type="password"/></td></tr>
+            </table>
+            <input type="submit" name="submit" value="Créer !"/>
         </form>
     </body>
 </html>

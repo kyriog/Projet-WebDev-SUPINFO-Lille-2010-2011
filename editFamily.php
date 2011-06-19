@@ -50,9 +50,9 @@ else {
         </head>
         <body>
             <form action="editFamily.php" method="post">
-                <label for="name">Name : </label><input type="text" id="name" name="name" value="<?php echo $family->getName();?>"/><br />
-                <label for="parentfamily">Parent Family : </label><select name="parentfamily" id="parentfamily">
-                    <option value="0">No parent family</option>
+                <label for="name">Nom : </label><input type="text" id="name" name="name" value="<?php echo $family->getName();?>"/><br />
+                <label for="parentfamily">Famille mère : </label><select name="parentfamily" id="parentfamily">
+                    <option value="0">Aucune</option>
                 <?php
                 foreach ($families as $value):
                     if($value->getId() != $_GET['id']):
@@ -81,7 +81,7 @@ else {
                 </span>
                 <span id="add-field">Ajouter un champs</span><br />
                 <input type="hidden" name="id" value="<?php echo $family->getId();?>" />
-                <input type="submit" name="send" value="Send !"/>
+                <input type="submit" name="send" value="Valider"/>
             </form>
         </body>
     </html>
