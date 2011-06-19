@@ -116,5 +116,44 @@ elseif(isset($_GET['id'])) {
     </body>
 </html>    
 <?php
-} 
+}
+else { 
+$articles = Model_Article::getAllArticles();    
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title></title>
+        <style type="text/css">
+            table{
+                border-collapse: collapse;
+                border: 1px solid black;
+            }
+            th, td {
+                border: 1px solid black;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <?php include 'search.php';?>
+
+        <table>
+            <tr>
+                <th>Numéro de référencement</th><th>Code bare</th><th>Quantité dispo</th><th>Description</th><th>Etat</th><th>Lieu de stockage</th>
+            <tr/>
+            <?php            
+            foreach ($articles as $article) { 
+                $place = new Model_Place($article->getPlace());?>
+            <tr>
+                <td><a href="viewArticle.php?id=<?php echo $article->getId(); ?>"><?php echo $article->getId();?></a></td><td><?php echo $article->getBarcode()?></td><td><?php echo $article->getQuantity()?></td><td><?php echo $article->getDescription()?></td><td><?php echo $article->getState()?></td><td><?php echo $place->getName();?></td>
+                <td><a href="editArticle.php?id=<?php echo $article->getId();?>">Editer</a></td>
+            </tr>
+            <?php } ?>
+        </table>
+    </body>
+</html>        
+<?php }
 ?>
