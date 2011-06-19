@@ -12,6 +12,12 @@ if(isset($_POST['action'])):
             $user->save();
             echo 'ok/%/'.$user->getId().'/%/'.$user->getLname().'/%/'.$user->getFname().'/%/'.$user->getPhone();
             break;
+        case 'updatePassword':
+            $user = new Model_User($_POST['id']);
+            $user->setPassword($_POST['password']);
+            $user->save();
+            echo 'ok';
+            break;
     }
 else:
     $users = Model_User::getAllUsers();
@@ -97,7 +103,7 @@ else:
                 });
                 $(".user_password_confirm").live('click',function() {
                     var id = $(".user_password").index($(this).parent().parent());
-                    var id_db = $($(".user_did")[id]).text();
+                    var id_db = $($(".user_id")[id]).text();
                     var password1 = $($(".user_password")[id]).children(".user_input_password1").val();
                     var password2 = $($(".user_password")[id]).children(".user_input_password2").val();
                     if(password1 == password2) {
