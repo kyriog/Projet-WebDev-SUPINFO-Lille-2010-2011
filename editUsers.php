@@ -1,9 +1,19 @@
 <?php
 require_once('config.php');
 require_once('autoload.php');
-if(isset($_POST['action'])): ?>
-ok/%/Glapa/%/Cyril/%/0123456789
-<?php else:
+if(isset($_POST['action'])):
+    switch($_POST['action']) {
+        case 'add':
+            $user = new Model_User();
+            $user->setPassword($_POST['password']);
+            $user->setLname($_POST['lname']);
+            $user->setFname($_POST['fname']);
+            $user->setPhone($_POST['phone']);
+            $user->save();
+            echo 'ok/%/'.$user->getId().'/%/'.$user->getLname().'/%/'.$user->getFname().'/%/'.$user->getPhone();
+            break;
+    }
+else:
     $users = Model_User::getAllUsers();
 ?>
 <!DOCTYPE html>
@@ -48,7 +58,7 @@ ok/%/Glapa/%/Cyril/%/0123456789
                     var password2 = $($(".user_password")[id]).children(".user_input_password2").val();
                     var lname = $($(".user_lname")[id]).children(".user_input_lname").val();
                     var fname = $($(".user_fname")[id]).children(".user_input_fname").val();
-                    var phone = $($(".user_phone")[id]).children(".user_input_lname").val();
+                    var phone = $($(".user_phone")[id]).children(".user_input_phone").val();
                     if(password1 == password2) {
                         $($(".user_password")[id]).children(".user_input_password1").attr("disabled","disabled");
                         $($(".user_password")[id]).children(".user_input_password2").attr("disabled","disabled");
