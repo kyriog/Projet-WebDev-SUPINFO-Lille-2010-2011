@@ -18,7 +18,6 @@ if(isset($_GET['id']) && $_SESSION['ip'] == $_SERVER['REMOTE_ADDR']) {
             body {
                 text-align: center;
                 width: 800px;
-                /*border: 1px solid black;*/
             }
             
             h1 {
@@ -73,10 +72,13 @@ if(isset($_GET['id']) && $_SESSION['ip'] == $_SERVER['REMOTE_ADDR']) {
                 width: 500px;
             }
             
+            .articles {
+                margin-bottom: 50px;
+            }
+            
             .articles table {
                 width: 700px;
                 margin-top: 20px;
-                margin-bottom: 1px;
                 border-collapse: collapse;
             }
             
@@ -95,9 +97,9 @@ if(isset($_GET['id']) && $_SESSION['ip'] == $_SERVER['REMOTE_ADDR']) {
             }
             
             .signatures {
-                margin-top: 20px;
-                border-collapse: collapse;
+                /*margin-top: 20px;*/
                 width: 700px;
+                border-collapse: collapse;
             }
             
             .articles tr {
@@ -115,6 +117,7 @@ if(isset($_GET['id']) && $_SESSION['ip'] == $_SERVER['REMOTE_ADDR']) {
                 text-align: left;
                 vertical-align: top;
             }
+            
         </style>
     </head>
     <body>
@@ -167,7 +170,7 @@ if(isset($_GET['id']) && $_SESSION['ip'] == $_SERVER['REMOTE_ADDR']) {
                 <td class="signature">
                     Emprunteur :
                 </td>
-                <td class="space"></td>
+                <td></td>
                 <td class="signature">
                     Prêteur :
                 </td>
