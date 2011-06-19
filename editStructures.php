@@ -10,7 +10,10 @@ if(isset($_POST['action'])):
             echo 'ok/%/'.$structure->getId().'/%/'.$structure->getName();
             break;
         case 'edit':
-            echo ($_POST['name'] == "err") ? "err" : 'ok/%/'.$_POST['name'];
+            $structure = new Model_Structure($_POST['id']);
+            $structure->setName($_POST['name']);
+            $structure->save();
+            echo 'ok/%/'.$structure->getName();
             break;
         case 'delete':
             echo ($_POST['id'] == "1") ? "err" : 'ok';
