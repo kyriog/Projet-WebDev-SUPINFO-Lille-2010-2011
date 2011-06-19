@@ -5,6 +5,7 @@ require_once('autoload.php');
 
 if(isset($_SESSION['ip']) && $_SESSION['ip'] == $_SERVER['REMOTE_ADDR'] && isset($_POST['search'])) {
 $typeSearch = substr($_POST['search'], 0, 1);
+
 switch ($typeSearch) {
     case 1:
         $search = new Model_Article($_POST['search']);
@@ -16,7 +17,7 @@ switch ($typeSearch) {
         $search = new Model_Customer($_POST['search']);
         $id = $search->getId();
         if(!is_null($id))
-            header("Location: ");
+            header("Location: viewCustomer.php?id=$id");
         break;
     case 5:
         $search = new Model_Loan($_POST['search']);
