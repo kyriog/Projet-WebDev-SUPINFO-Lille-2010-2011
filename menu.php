@@ -4,6 +4,7 @@
     }
     li {
         display: inline;
+        padding-right: 10px;
     }
 </style>
-<ul><li><a href="viewFamily.php">Liste des familles</a></li><li><a href="viewArticle.php">Liste des articles</a><a href="viewCustomer.php">Liste des clients</a></li><li><a href="viewLoans.php">Liste des prêts</a></li><li><a href="editUsers.php">Liste des utilisateurs</a></li><li><a href="editStructures.php">Liste des structures</a></li><li><a href="editPlaces.php">Liste des lieux</a></li></ul>
+<ul><li><a href="viewFamily.php">Liste des familles</a></li><li><a href="viewArticle.php">Liste des articles</a></li><li><a href="viewCustomer.php">Liste des clients</a></li><li><a href="viewLoans.php">Liste des prêts</a></li><li><a href="editUsers.php">Liste des utilisateurs</a></li><li><a href="editStructures.php">Liste des structures</a></li><li><a href="editPlaces.php">Liste des lieux</a></li></ul>
