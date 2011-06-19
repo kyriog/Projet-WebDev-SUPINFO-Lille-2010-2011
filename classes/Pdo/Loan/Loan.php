@@ -33,5 +33,16 @@ class Pdo_Loan extends Pdo_Manager {
         $query->execute();
         return $query->fetch(PDO::FETCH_ASSOC);
     }
+    
+    public function getAllLoans() {
+        $query = $this->pdo->prepare("SELECT id FROM loans");
+        $query->execute();
+        $array = array();
+        while($value = $query->fetch(PDO::FETCH_ASSOC)) {
+            $loan = new Model_Loan($value['id']);
+            array_push($array, $loan);
+        }
+        return $array;
+    }
 }
 ?>

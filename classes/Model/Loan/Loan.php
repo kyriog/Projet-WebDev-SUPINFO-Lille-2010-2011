@@ -72,6 +72,11 @@ class Model_Loan {
             self::$_manager->edit_loan($this);
         }
     }
+    
+    public static function getAllLoans() {
+        self::init();
+        return self::$_manager->getAllLoans();
+    }
 }
 
 ?>
