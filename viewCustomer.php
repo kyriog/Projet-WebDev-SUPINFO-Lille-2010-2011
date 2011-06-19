@@ -2,6 +2,12 @@
 session_start();
 require_once('config.php');
 require_once('autoload.php');
+if(isset($_POST['id'])) {
+    $customer = new Model_Customer($_POST['id']);
+    $customer->remove();
+    echo 'ok';
+    die;
+}
 if(!isset($_GET['id']))
     $customers = Model_Customer::getAllCustomers();
 else
@@ -15,19 +21,32 @@ else
         <script type="text/javascript" src="jquery-1.6.1.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                $(".delete").click(function(){
-                    var id = $(this).attr("id").split('_')[1];
-                    if(confirm("Êtes-vous sûr de vouloir supprimer le client "+id+" ?")) {
+                var action_alert = "<img src=\"media/alert.png\" alt=\"Erreur\" />";
+                var action_loading = "<img src=\"media/loading-mini.gif\" alt=\"Chargement\" />";
+                var action_delete = "<img src=\"media/delete.png\" alt=\"Supprimer\" class=\"customer_delete pointer\" />";
+                $(".customer_delete").live('click',function(){
+                    var id = $(".customer_action").index($(this).parent());
+                    var id_db = $($(".customer_id")[id]).text()
+                    var fname = $($(".customer_fname")[id]).text();
+                    var lname = $($(".customer_lname")[id]).text();
+                    $($(".customer_action")[id]).html(action_loading);
+                    if(confirm("Êtes-vous sûr de vouloir supprimer le client "+fname+" "+lname+" ?")) {
                         $.ajax({
                             type: "POST",
-                            url: "articlesTable.php",
-                            data: "action=delete&article="+id,
-                            success: function() {
-                                $("#article_"+id).hide("200", function() {
-                                    $(this).remove();
-                                })
+                            url: "viewCustomer.php",
+                            data: "id="+id_db,
+                            success: function(msg) {
+                                if($.trim(msg) == "ok") {
+                                    $($(".customer_line")[id]).fadeOut(1000, function() {
+                                        $(this).remove();
+                                    })
+                                } else {
+                                    $($(".customer_action")[id]).html(action_alert);
+                                }
                             }
                         })
+                    } else {
+                        $($(".customer_action")[id]).html(action_delete);
                     }
                 })
             })
@@ -41,23 +60,30 @@ else
                 border: 1px black solid;
                 padding: 5px 5px 5px 5px;
             }
+            
+            .pointer {
+                cursor: pointer;
+            }
         </style>
     </head>
     <body>
         <table>
-            <tr><th>Identifiant</th><th>Prénom</th><th>Nom</th><th>Téléphone</th><th>Structure</th><th>Fonction</th><th>Adresse</th></tr>
-            <?php foreach($customers as $customer) { 
-                $structure = new Model_Structure($customer->getStructure());?>
-            <tr>
-                <td><?php echo $customer->getId(); ?></td>
-                <td><?php echo $customer->getFname();?></td>
-                <td><?php echo $customer->getLname();?></td>
-                <td><?php echo $customer->getPhone();?></td>
-                <td><?php echo $structure->getName();?></td>
-                <td><?php echo $customer->getFunction();?></td>
-                <td><?php echo $customer->getAddress();?></td>
-            </tr>
-            <?php } ?>
+            <thead><th>Identifiant</th><th>Prénom</th><th>Nom</th><th>Téléphone</th><th>Structure</th><th>Fonction</th><th>Adresse</th></thead>
+            <tbody>
+                <?php foreach($customers as $customer) { 
+                    $structure = new Model_Structure($customer->getStructure());?>
+                <tr class="customer_line">
+                    <td class="customer_id"><?php echo $customer->getId(); ?></td>
+                    <td class="customer_fname"><?php echo $customer->getFname();?></td>
+                    <td class="customer_lname"><?php echo $customer->getLname();?></td>
+                    <td><?php echo $customer->getPhone();?></td>
+                    <td><?php echo $structure->getName();?></td>
+                    <td><?php echo $customer->getFunction();?></td>
+                    <td><?php echo $customer->getAddress();?></td>
+                    <td class="customer_action"><img src="media/delete.png" alt="Supprimer" class="customer_delete pointer" /></td>
+                </tr>
+                <?php } ?>
+            </tbody>
         </table>
     </body>
 </html>
