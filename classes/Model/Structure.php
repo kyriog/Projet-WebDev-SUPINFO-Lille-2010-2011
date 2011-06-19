@@ -42,6 +42,14 @@ class Model_Structure {
         }
     }
     
+    public function remove() {
+        if(!is_null($this->_id)) {
+            self::$_manager->delete_structure($this->_id);
+            $this->_id = null;
+            $this->_name = null;
+        }
+    }
+    
     public static function getAllStructures(){
         self::init();
         return self::$_manager->getAllStructures();
