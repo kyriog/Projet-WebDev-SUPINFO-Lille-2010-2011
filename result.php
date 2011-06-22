@@ -76,7 +76,7 @@ switch ($typeSearch) {
         <table>
             <tr><th>Numéro du prêt</th><th>Raison</th></tr>
         <?php foreach($loans as $loan) { ?>
-            <tr><td><a href="editLoan.php?id=<?php echo $loan->getId();?>"><?php echo $loan->getId(); ?></a></td><td><?php echo $loan->getReason(); ?></td></tr>            
+            <tr><td><a href="printPage.php?id=<?php echo $loan->getId();?>"><?php echo $loan->getId(); ?></a></td><td><?php echo $loan->getReason(); ?></td></tr>            
         <?php } ?>
         </table>
     <?php break; 

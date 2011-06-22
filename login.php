@@ -10,6 +10,7 @@ if(isset($_POST['lname']) && isset($_POST['password'])) {
     {
         $_SESSION['id'] = $user->getId();
         $_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
+        header("Location: editUsers.php");
     }
 }
 
